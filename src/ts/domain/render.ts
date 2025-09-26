@@ -35,8 +35,14 @@ export class Render {
 
 		img.style.transition = "transform 0.3s ease-in-out";
 
-		const boardSize = 8;
-		const cellSize = 75;
+		const boardEl = document.querySelector(".board") as HTMLElement;
+		if (!boardEl) return;
+		console.log(boardEl);
+		console.log(boardEl.offsetWidth);
+
+
+		const boardSizePx = boardEl.offsetWidth;
+		const cellSize = boardSizePx / 8;
 
 		const deltaX = (newPos.col - oldPos.col) * cellSize;
 		const deltaY = (oldPos.row - newPos.row) * cellSize;

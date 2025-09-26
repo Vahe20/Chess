@@ -29,8 +29,6 @@
             & img {
                 filter: drop-shadow(0 0 1px black);
                 transition: var(--transition);
-
-                // transform: translate(0, -75px);
             }
         }
     }
@@ -49,12 +47,6 @@
 
     #check_cell {
         background-color: yellow;
-    }
-}
-
-@include tablet {
-    .black {
-        rotate: 180deg;
     }
 }
 
