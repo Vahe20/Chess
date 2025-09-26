@@ -263,6 +263,7 @@ body {
 }
 .wrap .board_cell img {
   filter: drop-shadow(0 0 1px black);
+  transition: var(--transition);
 }
 .wrap #available_cell {
   background-color: green;

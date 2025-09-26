@@ -8,13 +8,30 @@ export class Render {
                 if (!cell)
                     continue;
                 if (piece instanceof ChessPiece) {
-                    cell.innerHTML = `<img class="${piece.getColor() === "white" ? "white" : "black"}" src="${piece.getImg()}" draggable="false" alt="${piece.getType()}">`;
+                    cell.innerHTML = `<img class="${piece.getColor() === "white" ? "white" : "black"}" id="img-${i}-${j}" src="${piece.getImg()}" draggable="false" alt="${piece.getType()}">`;
                 }
                 else {
                     cell.innerHTML = "";
                 }
             }
         }
+    }
+    static movePieceAnim(chessboard, oldPos, newPos) {
+        const img = document.querySelector(`#img-${oldPos.row}-${oldPos.col}`);
+        if (!img)
+            return;
+        img.style.transition = "transform 0.3s ease-in-out";
+        const boardSize = 8;
+        const cellSize = 75;
+        const deltaX = (newPos.col - oldPos.col) * cellSize;
+        const deltaY = (oldPos.row - newPos.row) * cellSize;
+        img.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        img.addEventListener("transitionend", () => {
+            img.style.transition = "none";
+            img.style.transform = "";
+            img.id = `img-${newPos.row}-${newPos.col}`;
+            this.renderBoard(chessboard);
+        }, { once: true });
     }
     static renderCastlingMove(castling_pos) {
         castling_pos.forEach(pos => {

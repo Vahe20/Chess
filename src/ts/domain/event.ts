@@ -34,7 +34,15 @@ export function boardEvents(chessBoard: ChessBoard) {
 						{ row, col }
 					);
 
-					History.addMove({row: pos.row, col: pos.col}, {row, col})
+					Render.movePieceAnim(
+						chessBoard,
+						{ row: pos.row, col: pos.col },
+						{ row, col }
+					);
+					History.addMove(
+						{ row: pos.row, col: pos.col },
+						{ row, col }
+					);
 
 					if (func.isPawnPromotion(chessBoard, row, col)) {
 						func.selectPiecePromotion(chessBoard, row, col);
@@ -45,13 +53,16 @@ export function boardEvents(chessBoard: ChessBoard) {
 					if (func.isMath(chessBoard)) {
 						Render.renderMath(chessBoard);
 					}
-
-					Render.renderBoard(chessBoard);
 				}
 
 				if (cell && cell.id === "castling_cell") {
 					const pos = selectedPiece.getPosition();
 
+					Render.movePieceAnim(
+						chessBoard,
+						{ row: pos.row, col: pos.col },
+						{ row, col }
+					);
 					selectedPiece.move(
 						chessBoard,
 						{ row: pos.row, col: pos.col },
@@ -60,6 +71,11 @@ export function boardEvents(chessBoard: ChessBoard) {
 
 					const rook = chessBoard.getPiece(row, col === 6 ? 7 : 0);
 					if (rook) {
+						Render.movePieceAnim(
+							chessBoard,
+							{ row: row, col: col === 6 ? 7 : 0 },
+							{ row: row, col: col === 6 ? 5 : 3 }
+						); 
 						rook.move(
 							chessBoard,
 							{ row: row, col: col === 6 ? 7 : 0 },
@@ -72,8 +88,6 @@ export function boardEvents(chessBoard: ChessBoard) {
 					if (func.isMath(chessBoard)) {
 						Render.renderMath(chessBoard);
 					}
-
-					Render.renderBoard(chessBoard);
 				}
 			}
 
