@@ -1,0 +1,75 @@
+@use '../helpers'as *;
+
+.header__menu-btn {
+    position: fixed;
+    left: rem(20);
+    top: rem(20);
+}
+
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .board {
+        border: 1px solid #000;
+        box-shadow: 0 0 10px #000;
+        width: rem(600);
+        height: rem(600);
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        transition: var(--transition)s;
+
+        &_cell {
+            border: 1px solid #000;
+            transition: var(--transition);
+
+            & img {
+                filter: drop-shadow(0 0 1px black);
+            }
+        }
+    }
+
+    #available_cell {
+        background-color: green;
+    }
+
+    #attack_cell {
+        background-color: red;
+    }
+
+    #castling_cell {
+        background-color: blue;
+    }
+
+    #check_cell {
+        background-color: yellow;
+    }
+}
+
+@include tablet {
+    .black {
+        rotate: 180deg;
+    }
+}
+
+@include mobile {
+    .wrap {
+        .board {
+            width: rem(400);
+            height: rem(400);
+        }
+    }
+}
+
+
+@mixin mobile-s {
+    .wrap {
+        .board {
+            width: rem(250);
+            height: rem(250);
+        }
+    }
+}

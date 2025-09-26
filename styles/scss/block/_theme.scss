@@ -1,0 +1,38 @@
+/* Тема 0 — классика */
+.board.theme-0 .board_cell {
+    background-color: rgb(243, 200, 106);
+
+    &:hover {
+        background-color: rgb(56, 55, 54);
+    }
+}
+
+.board.theme-0 .black_cell {
+    background-color: rgb(124, 87, 51);
+}
+
+/* Тема 1 — серая */
+.board.theme-1 .board_cell {
+    background-color: #e0e0e0;
+
+    &:hover {
+        background-color: rgb(70, 50, 30);
+    }
+}
+
+.board.theme-1 .black_cell {
+    background-color: #808080;
+}
+
+/* Тема 2 — зелёная */
+.board.theme-2 .board_cell {
+    background-color: #eeeed2;
+
+    &:hover {
+        background-color: rgb(77, 110, 74);
+    }
+}
+
+.board.theme-2 .black_cell {
+    background-color: #6c8b4d;
+}

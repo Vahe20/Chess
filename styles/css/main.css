@@ -1,0 +1,438 @@
+@charset "UTF-8";
+/**
+Нормализация блочной модели
+*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+Убираем внутренние отступы слева тегам списков,
+у которых есть атрибут class
+*/
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+Убираем внешние отступы body и двум другим тегам,
+у которых есть атрибут class
+*/
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+Убираем внешние отступы вертикали нужным тегам,
+у которых есть атрибут class
+*/
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+Убираем стандартный маркер маркированному списку,
+у которого есть атрибут class
+*/
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+Обнуляем вертикальные внешние отступы параграфа,
+объявляем локальную переменную для внешнего отступа вниз,
+чтобы избежать взаимодействие с более сложным селектором
+*/
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+Внешний отступ вниз для параграфа без атрибута class,
+который расположен не последним среди своих соседних элементов
+*/
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+Упрощаем работу с изображениями и видео
+*/
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+Наследуем свойства шрифт для полей ввода
+*/
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+      Пригодится в большинстве ситуаций
+      (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  height: 100%;
+  /**
+      Убираем скачок интерфейса по горизонтали
+      при появлении / исчезновении скроллбара
+  */
+  scrollbar-gutter: stable;
+}
+
+/**
+Плавный скролл
+*/
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+      Пригодится в большинстве ситуаций
+      (когда, например, нужно будет "прижать" футер к низу сайта)
+  */
+  min-height: 100%;
+  /**
+      Унифицированный интерлиньяж
+  */
+  line-height: 1.5;
+}
+
+/**
+Нормализация высоты элемента ссылки при его инспектировании в DevTools
+*/
+a:where([class]) {
+  display: inline-flex;
+}
+
+a {
+  text-decoration: none;
+}
+
+/**
+Курсор-рука при наведении на элемент
+*/
+label {
+  cursor: pointer;
+}
+
+/**
+Приводим к единому цвету svg-элементы
+(за исключением тех, у которых уже указан
+атрибут fill со значением 'none' или начинается с 'url')
+*/
+:where([fill]:not([fill=none],
+[fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+Приводим к единому цвету svg-элементы
+(за исключением тех, у которых уже указан
+атрибут stroke со значением 'none')
+*/
+:where([stroke]:not([stroke=none],
+[stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+*/
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+Приведение рамок таблиц в классический 'collapse' вид
+*/
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+Удаляем все анимации и переходы для людей,
+которые предпочитают их не использовать
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.container {
+  min-width: 390px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.wrap {
+  min-width: 358px;
+  max-width: 1180px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding-inline: 0.75rem;
+}
+
+body {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.btn {
+  transition: var(--transition);
+}
+.btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+:root {
+  --transition: .4s;
+}
+
+.header__menu-btn {
+  position: fixed;
+  left: 1.25rem;
+  top: 1.25rem;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.wrap .board {
+  border: 1px solid #000;
+  box-shadow: 0 0 10px #000;
+  width: 37.5rem;
+  height: 37.5rem;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  transition: var(--transition) s;
+}
+.wrap .board_cell {
+  border: 1px solid #000;
+  transition: var(--transition);
+}
+.wrap .board_cell img {
+  filter: drop-shadow(0 0 1px black);
+}
+.wrap #available_cell {
+  background-color: green;
+}
+.wrap #attack_cell {
+  background-color: red;
+}
+.wrap #castling_cell {
+  background-color: blue;
+}
+.wrap #check_cell {
+  background-color: yellow;
+}
+
+@media (width <= 63.99875rem) {
+  .black {
+    rotate: 180deg;
+  }
+}
+@media (width <= 47.99875rem) {
+  .wrap .board {
+    width: 25rem;
+    height: 25rem;
+  }
+}
+.menu {
+  position: absolute;
+  background-color: rgb(192, 191, 191);
+  transform: scale(0);
+  border: 2px solid #000;
+  transition: var(--transition);
+  width: 50%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+  align-items: center;
+}
+.menu__exit {
+  position: absolute;
+  right: 1.25rem;
+}
+.menu__winner {
+  font-size: 2.5rem;
+  color: #000;
+}
+.menu__rotate .menu__restart {
+  padding: 0.625rem 1.875rem;
+  cursor: pointer;
+}
+
+.promote {
+  position: absolute;
+  background-color: rgb(192, 191, 191);
+  transform: scale(0);
+  border: 2px solid #000;
+  transition: var(--transition);
+  display: flex;
+  justify-content: space-around;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  padding: 1.25rem;
+}
+
+@media (width <= 63.99875rem) {
+  .promote img {
+    width: 4.375rem;
+  }
+}
+@media (width <= 47.99875rem) {
+  .wrap .promote img {
+    width: 3.125rem;
+  }
+}
+/* Тема 0 — классика */
+.board.theme-0 .board_cell {
+  background-color: rgb(243, 200, 106);
+}
+.board.theme-0 .board_cell:hover {
+  background-color: rgb(56, 55, 54);
+}
+
+.board.theme-0 .black_cell {
+  background-color: rgb(124, 87, 51);
+}
+
+/* Тема 1 — серая */
+.board.theme-1 .board_cell {
+  background-color: #e0e0e0;
+}
+.board.theme-1 .board_cell:hover {
+  background-color: rgb(70, 50, 30);
+}
+
+.board.theme-1 .black_cell {
+  background-color: #808080;
+}
+
+/* Тема 2 — зелёная */
+.board.theme-2 .board_cell {
+  background-color: #eeeed2;
+}
+.board.theme-2 .board_cell:hover {
+  background-color: rgb(77, 110, 74);
+}
+
+.board.theme-2 .black_cell {
+  background-color: #6c8b4d;
+}
+
+.moves-panel {
+  position: absolute;
+  left: 3.125rem;
+  top: 20%;
+  max-width: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #e6eef6;
+  background-color: #0b1220;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.moves-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.moves-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.moves-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.moves-controls button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: #9aa4b2;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.moves-list {
+  overflow: auto;
+  max-height: 220px;
+  border-radius: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.01);
+  display: grid;
+}
+
+@media (width <= 63.99875rem) {
+  .moves-panel {
+    position: static;
+  }
+  .moves-list {
+    max-height: 120px;
+  }
+}/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, user-scalable=no"
+		/>
+		<title>Chess</title>
+
+		<link rel="icon" href="../assets/icon/logo.ico" />
+		<link rel="stylesheet" href="../styles/css/main.css" />
+		<script type="module" src="../src/js/app.js" defer></script>
+	</head>
+	<body class="container">
+		<div class="header">
+			<button class="header__menu-btn btn" id="menu_open">=</button>
+		</div>
+
+		<div class="wrap">
+			<div class="board theme-0"></div>
+			<div class="menu">
+				<button class="menu__exit btn" id="menu_exit">X</button>
+				<p class="menu__winner" id="win"></p>
+				<img
+					id="menu_img"
+					src="../assets/images/white_king.png"
+					width="100px"
+					alt="Белый король"
+				/>
+				<div class="nav">
+					<button
+						type="button"
+						class="menu__restart btn"
+						id="restart"
+					>
+						Restart
+					</button>
+					<button type="button" class="menu__rotate btn" id="rotate">
+						Rotate
+					</button>
+					<button
+						type="button"
+						class="menu__cheangeColor btn"
+						id="changeColor"
+					>
+						Change Color
+					</button>
+				</div>
+			</div>
+			<div class="promote">
+				<img
+					id="promote_btn-queen"
+					src="../assets/images/white_queen.png"
+					width="100px"
+					alt="Белая ферзь"
+				/>
+				<img
+					id="promote_btn-rook"
+					src="../assets/images/white_rook.png"
+					width="100px"
+					alt="Белая ладья"
+				/>
+				<img
+					id="promote_btn-bishop"
+					src="../assets/images/white_bishop.png"
+					width="100px"
+					alt="Белый слон"
+				/>
+				<img
+					id="promote_btn-knight"
+					src="../assets/images/white_knight.png"
+					width="100px"
+					alt="Белый конь"
+				/>
+			</div>
+		</div>
+
+        <div
+			class="moves-panel"
+			id="movesPanel"
+			role="region"
+			aria-label="История ходов"
+		>
+			<div class="moves-header">
+				<div class="moves-title">История ходов</div>
+				<div class="moves-controls">
+					<!-- <button id="goStart">|&lt;</button> -->
+					<button id="undo">&lt;</button>
+					<button id="redo">&gt;</button>
+					<!-- <button id="goEnd">&gt;|</button> -->
+				</div>
+			</div>
+
+			<div class="moves-list" id="movesList" tabindex="0">
+				
+			</div>
+
+			<div class="moves-footer">
+				<div>Ходы: <span id="movesCount">0</span></div>
+			</div>
+		</div>
+	</body>
+</html>

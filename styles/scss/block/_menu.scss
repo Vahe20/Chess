@@ -1,0 +1,65 @@
+@use '../helpers'as *;
+
+
+.menu {
+    position: absolute;
+    background-color: rgb(192, 191, 191);
+    transform: scale(0);
+    border: 2px solid #000;
+    transition: var(--transition);
+    width: 50%;
+    height: 60%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: rem(20);
+    align-items: center;
+
+    &__exit {
+        position: absolute;
+        right: rem(20);
+    }
+
+    &__winner {
+        font-size: rem(40);
+        color: #000;
+    }
+
+    &__rotate &__restart {
+        padding: rem(10) rem(30);
+        cursor: pointer;
+    }
+}
+
+.promote {
+    position: absolute;
+    background-color: rgb(192, 191, 191);
+    transform: scale(0);
+    border: 2px solid #000;
+    transition: var(--transition);
+
+    display: flex;
+    justify-content: space-around;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    padding: rem(20);
+}
+
+@include tablet {
+    .promote {
+        & img {
+            width: rem(70);
+        }
+    }
+}
+
+@include mobile {
+    .wrap {
+        .promote {
+            & img {
+                width: rem(50);
+            }
+        }
+    }
+}
