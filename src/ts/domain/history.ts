@@ -14,4 +14,14 @@ export class History {
 			movesCount.textContent = tmp >= 0 ? String(tmp += 1) : "0";
 		}
     }
+
+    static clear() {
+        const MovesList = document.getElementById("movesList");
+        
+        MovesList!.innerHTML = ``;
+		const movesCount = document.getElementById("movesCount");
+		if (movesCount) {
+			movesCount.textContent = "0";
+		}
+    }
 }

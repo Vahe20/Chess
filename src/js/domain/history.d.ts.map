@@ -1,1 +1,1 @@
-{"version":3,"file":"history.d.ts","sourceRoot":"","sources":["../../ts/domain/history.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,KAAK,MAAM,kBAAkB,CAAC;AAE1C,qBAAa,OAAO;IACnB,MAAM,CAAC,OAAO,CAAC,MAAM,EAAC,KAAK,CAAC,QAAQ,EAAE,MAAM,EAAC,KAAK,CAAC,QAAQ;CAa3D"}
+{"version":3,"file":"history.d.ts","sourceRoot":"","sources":["../../ts/domain/history.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,KAAK,MAAM,kBAAkB,CAAC;AAE1C,qBAAa,OAAO;IACnB,MAAM,CAAC,OAAO,CAAC,MAAM,EAAC,KAAK,CAAC,QAAQ,EAAE,MAAM,EAAC,KAAK,CAAC,QAAQ;IAcxD,MAAM,CAAC,KAAK;CASf"}
