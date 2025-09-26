@@ -79,6 +79,7 @@ export function boardEvents(chessBoard) {
         func.start(chessBoard);
         const menu = document.querySelector(".menu");
         menu.style.transform = "scale(0)";
+        History.clear();
         Render.renderBoard(chessBoard);
     });
     (_e = document.getElementById("rotate")) === null || _e === void 0 ? void 0 : _e.addEventListener("click", () => {

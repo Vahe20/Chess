@@ -127,6 +127,7 @@ export function boardEvents(chessBoard: ChessBoard) {
 		func.start(chessBoard);
 		const menu = document.querySelector(".menu") as HTMLDivElement;
 		menu.style.transform = "scale(0)";
+		History.clear();
 		Render.renderBoard(chessBoard);
 	});
 
