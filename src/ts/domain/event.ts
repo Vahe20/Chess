@@ -68,7 +68,7 @@ export function boardEvents(chessBoard: ChessBoard) {
 						History.addMove(
 							oldPos,
 							newPos,
-							chessBoard.getPiece(row, col)
+							chessBoard.getPiece(newPos.row, newPos.col)
 						);
 						Render.movePieceAnim(
 							chessBoard,

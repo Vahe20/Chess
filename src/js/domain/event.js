@@ -40,7 +40,7 @@ export function boardEvents(chessBoard) {
                     if (rook) {
                         const oldPos = { row: row, col: col === 6 ? 7 : 0 };
                         const newPos = { row: row, col: col === 6 ? 5 : 3 };
-                        History.addMove(oldPos, newPos, chessBoard.getPiece(row, col));
+                        History.addMove(oldPos, newPos, chessBoard.getPiece(newPos.row, newPos.col));
                         Render.movePieceAnim(chessBoard, oldPos, newPos);
                         rook.move(chessBoard, oldPos, newPos);
                     }
