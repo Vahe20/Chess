@@ -52,7 +52,8 @@ export class Render {
 			"transitionend",
 			() => {
 				// img.style.transition = "none";
-				img.style.transform = "translate (0, 0)";
+				const current = img.style.transform || "";
+    img.style.transform = current + " translate(0, 0)";
 				img.id = `img-${newPos.row}-${newPos.col}`;
 				this.renderBoard(chessboard);
 			},
