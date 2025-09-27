@@ -1,13 +1,24 @@
 export class History {
-    static addMove(oldPos, newPos) {
+    static addMove(oldPos, newPos, chessPiece) {
         const MovesList = document.getElementById("movesList");
-        let o = (String.fromCharCode("A".charCodeAt(0) + oldPos.col)) + "" + (oldPos.row + 1);
-        let n = (String.fromCharCode("A".charCodeAt(0) + newPos.col)) + "" + (newPos.row + 1);
-        MovesList.innerHTML = `<p>${o} move ${n}</p>` + MovesList.innerHTML;
+        let o = String.fromCharCode("A".charCodeAt(0) + oldPos.col) +
+            "" +
+            (oldPos.row + 1);
+        let n = String.fromCharCode("A".charCodeAt(0) + newPos.col) +
+            "" +
+            (newPos.row + 1);
+        if (chessPiece) {
+            MovesList.innerHTML =
+                `<p>${o} => ${n} attack ${chessPiece.getType()}</p>` +
+                    MovesList.innerHTML;
+        }
+        else {
+            MovesList.innerHTML =
+                `<p>${o} => ${n} move</p>` + MovesList.innerHTML;
+        }
         const movesCount = document.getElementById("movesCount");
         if (movesCount) {
-            let tmp = +movesCount.textContent;
-            movesCount.textContent = tmp >= 0 ? String(tmp += 1) : "0";
+            movesCount.textContent = String((+movesCount.textContent || 0) + 1);
         }
     }
     static clear() {

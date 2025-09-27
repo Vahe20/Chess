@@ -28,21 +28,15 @@ export function boardEvents(chessBoard: ChessBoard) {
 				if (cell && cell.id === "available_cell") {
 					const pos = selectedPiece.getPosition();
 
-					selectedPiece.move(
-						chessBoard,
-						{ row: pos.row, col: pos.col },
-						{ row, col }
+					History.addMove(
+						pos,
+						{ row, col },
+						chessBoard.getPiece(row, col)
 					);
 
-					Render.movePieceAnim(
-						chessBoard,
-						{ row: pos.row, col: pos.col },
-						{ row, col }
-					);
-					History.addMove(
-						{ row: pos.row, col: pos.col },
-						{ row, col }
-					);
+					selectedPiece.move(chessBoard, pos, { row, col });
+
+					Render.movePieceAnim(chessBoard, pos, { row, col });
 
 					if (func.isPawnPromotion(chessBoard, row, col)) {
 						func.selectPiecePromotion(chessBoard, row, col);
@@ -58,28 +52,33 @@ export function boardEvents(chessBoard: ChessBoard) {
 				if (cell && cell.id === "castling_cell") {
 					const pos = selectedPiece.getPosition();
 
-					Render.movePieceAnim(
-						chessBoard,
-						{ row: pos.row, col: pos.col },
-						{ row, col }
+					History.addMove(
+						pos,
+						{ row, col },
+						chessBoard.getPiece(row, col)
 					);
-					selectedPiece.move(
-						chessBoard,
-						{ row: pos.row, col: pos.col },
-						{ row, col }
-					);
+
+					Render.movePieceAnim(chessBoard, pos, { row, col });
+					selectedPiece.move(chessBoard, pos, { row, col });
 
 					const rook = chessBoard.getPiece(row, col === 6 ? 7 : 0);
 					if (rook) {
+						const oldPos = { row: row, col: col === 6 ? 7 : 0 };
+						const newPos = { row: row, col: col === 6 ? 5 : 3 };
+						History.addMove(
+							oldPos,
+							newPos,
+							chessBoard.getPiece(row, col)
+						);
 						Render.movePieceAnim(
 							chessBoard,
-							{ row: row, col: col === 6 ? 7 : 0 },
-							{ row: row, col: col === 6 ? 5 : 3 }
+							oldPos,
+							newPos
 						);
 						rook.move(
 							chessBoard,
-							{ row: row, col: col === 6 ? 7 : 0 },
-							{ row: row, col: col === 6 ? 5 : 3 }
+							oldPos,
+							newPos
 						);
 					}
 
