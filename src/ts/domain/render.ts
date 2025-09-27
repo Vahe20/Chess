@@ -46,14 +46,15 @@ export class Render {
 
 		const deltaX = (newPos.col - oldPos.col) * cellSize;
 		const deltaY = (oldPos.row - newPos.row) * cellSize;
-		img.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+		const computedStyle = getComputedStyle(img);
+		const baseTransform = computedStyle.transform === "none" ? "" : computedStyle.transform;
+		img.style.transform = `${baseTransform} translate(${deltaX}px, ${deltaY}px)`;
 
 		img.addEventListener(
 			"transitionend",
 			() => {
 				// img.style.transition = "none";
-				const current = img.style.transform || "";
-    			img.style.transform = current + " translate(0, 0)";
+    			img.style.transform = baseTransform;
 				img.id = `img-${newPos.row}-${newPos.col}`;
 				this.renderBoard(chessboard);
 			},
@@ -109,4 +110,5 @@ export class Render {
 		}
 	}
 }
+
 
