@@ -51,8 +51,8 @@ export class Render {
 		img.addEventListener(
 			"transitionend",
 			() => {
-				img.style.transition = "none";
-				img.style.transform = "";
+				// img.style.transition = "none";
+				img.style.transform = "translate (0, 0)";
 				img.id = `img-${newPos.row}-${newPos.col}`;
 				this.renderBoard(chessboard);
 			},
