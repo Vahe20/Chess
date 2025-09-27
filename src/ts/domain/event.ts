@@ -1,7 +1,7 @@
 import { Render } from "./render.js";
 import { ChessBoard } from "./chess_board.js";
 import { History } from "./history.js";
-import * as func from "./func.js";
+import * as func from "./game.js";
 
 import { ChessPiece } from "./chessPiece/chessPiece.js";
 
@@ -75,7 +75,7 @@ export function boardEvents(chessBoard: ChessBoard) {
 							chessBoard,
 							{ row: row, col: col === 6 ? 7 : 0 },
 							{ row: row, col: col === 6 ? 5 : 3 }
-						); 
+						);
 						rook.move(
 							chessBoard,
 							{ row: row, col: col === 6 ? 7 : 0 },

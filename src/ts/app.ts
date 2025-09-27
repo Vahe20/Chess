@@ -1,5 +1,5 @@
 import { ChessBoard } from "./domain/chess_board.js";
-import * as func from "./domain/func.js";
+import * as func from "./domain/game.js";
 import { boardEvents } from "./domain/event.js";
 
 func.generateHtmlCells();

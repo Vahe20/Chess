@@ -1,7 +1,7 @@
 import { ChessBoard } from "../chess_board.js";
 import { ChessPiece } from "./chessPiece.js";
 import * as Types from "../globalTypes.js";
-import * as func from "../func.js";
+import * as func from "../game.js";
 
 import { Rook } from "./Rook.js";
 
@@ -52,13 +52,13 @@ export class King extends ChessPiece {
 		const shortPos = [
 			{ row: this.position.row, col: this.position.col + 1 },
 			{ row: this.position.row, col: this.position.col + 2 },
-		]
-		
+		];
+
 		const longPos = [
 			{ row: this.position.row, col: this.position.col - 1 },
 			{ row: this.position.row, col: this.position.col - 2 },
 			{ row: this.position.row, col: this.position.col - 3 },
-		]
+		];
 
 		const castlingMoves: Types.position[] = [];
 

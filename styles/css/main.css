@@ -372,7 +372,7 @@ body {
 
 .moves-panel {
   position: absolute;
-  left: 3.125rem;
+  right: 3.125rem;
   top: 20%;
   max-width: 100%;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);

@@ -167,4 +167,4 @@ export function virtualBoard(chessBoard, pos, newPos) {
     virtualBoard.deletePiece(pos.row, pos.col);
     return !isCheck(virtualBoard);
 }
-//# sourceMappingURL=func.js.map
+//# sourceMappingURL=game.js.map

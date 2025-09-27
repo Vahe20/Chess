@@ -37,9 +37,6 @@ export class Render {
 
 		const boardEl = document.querySelector(".board") as HTMLElement;
 		if (!boardEl) return;
-		console.log(boardEl);
-		console.log(boardEl.offsetWidth);
-
 
 		const boardSizePx = boardEl.offsetWidth;
 		const cellSize = boardSizePx / 8;

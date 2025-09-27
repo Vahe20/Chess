@@ -1,5 +1,5 @@
 import { ChessPiece } from "./chessPiece.js";
-import * as func from "../func.js";
+import * as func from "../game.js";
 import { Rook } from "./Rook.js";
 export class King extends ChessPiece {
     constructor(color, type, position, img) {

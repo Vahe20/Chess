@@ -8,4 +8,4 @@ export declare function getKing(chessBoard: ChessBoard, color: Types.typePieceCo
 export declare function isCheck(chessBoard: ChessBoard): boolean;
 export declare function isMath(chessBoard: ChessBoard): boolean;
 export declare function virtualBoard(chessBoard: ChessBoard, pos: Types.position, newPos: Types.position): boolean;
-//# sourceMappingURL=func.d.ts.map
+//# sourceMappingURL=game.d.ts.map

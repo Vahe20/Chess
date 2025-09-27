@@ -1,6 +1,6 @@
 import { Render } from "./render.js";
 import { History } from "./history.js";
-import * as func from "./func.js";
+import * as func from "./game.js";
 export function boardEvents(chessBoard) {
     var _a, _b, _c, _d, _e, _f;
     let selectedPiece = undefined;
