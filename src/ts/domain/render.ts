@@ -53,7 +53,7 @@ export class Render {
 			() => {
 				// img.style.transition = "none";
 				const current = img.style.transform || "";
-    img.style.transform = current + " translate(0, 0)";
+    			img.style.transform = current + " translate(0, 0)";
 				img.id = `img-${newPos.row}-${newPos.col}`;
 				this.renderBoard(chessboard);
 			},
@@ -109,3 +109,4 @@ export class Render {
 		}
 	}
 }
+
