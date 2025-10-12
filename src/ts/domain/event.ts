@@ -5,7 +5,7 @@ import * as func from "./game.js";
 
 import { ChessPiece } from "./chessPiece/chessPiece.js";
 
-export function boardEvents(chessBoard: ChessBoard) {
+export function boardEvents(chessBoard: ChessBoard, history: History) {
 	let selectedPiece: ChessPiece | undefined = undefined;
 
 	document.querySelector(".board")?.addEventListener("click", event => {
@@ -28,11 +28,7 @@ export function boardEvents(chessBoard: ChessBoard) {
 				if (cell && cell.id === "available_cell") {
 					const pos = selectedPiece.getPosition();
 
-					History.addMove(
-						pos,
-						{ row, col },
-						chessBoard.getPiece(row, col)
-					);
+					const targetPiece = chessBoard.getPiece(row, col);
 
 					selectedPiece.move(chessBoard, pos, { row, col });
 
@@ -44,6 +40,13 @@ export function boardEvents(chessBoard: ChessBoard) {
 
 					chessBoard.changeCurrentPlayer();
 
+					history.push(
+						pos,
+						{ row, col },
+						targetPiece,
+						chessBoard
+					);
+
 					if (func.isMath(chessBoard)) {
 						Render.renderMath(chessBoard);
 					}
@@ -52,11 +55,7 @@ export function boardEvents(chessBoard: ChessBoard) {
 				if (cell && cell.id === "castling_cell") {
 					const pos = selectedPiece.getPosition();
 
-					History.addMove(
-						pos,
-						{ row, col },
-						chessBoard.getPiece(row, col)
-					);
+					const targetPiece = chessBoard.getPiece(row, col);
 
 					Render.movePieceAnim(chessBoard, pos, { row, col });
 					selectedPiece.move(chessBoard, pos, { row, col });
@@ -65,24 +64,19 @@ export function boardEvents(chessBoard: ChessBoard) {
 					if (rook) {
 						const oldPos = { row: row, col: col === 6 ? 7 : 0 };
 						const newPos = { row: row, col: col === 6 ? 5 : 3 };
-						History.addMove(
-							oldPos,
-							newPos,
-							chessBoard.getPiece(newPos.row, newPos.col)
-						);
-						Render.movePieceAnim(
-							chessBoard,
-							oldPos,
-							newPos
-						);
-						rook.move(
-							chessBoard,
-							oldPos,
-							newPos
-						);
+
+						Render.movePieceAnim(chessBoard, oldPos, newPos);
+						rook.move(chessBoard, oldPos, newPos);
 					}
 
 					chessBoard.changeCurrentPlayer();
+
+					history.push(
+						pos,
+						{ row, col },
+						targetPiece,
+						chessBoard
+					);
 
 					if (func.isMath(chessBoard)) {
 						Render.renderMath(chessBoard);
@@ -138,10 +132,12 @@ export function boardEvents(chessBoard: ChessBoard) {
 
 	document.getElementById("restart")?.addEventListener("click", () => {
 		func.start(chessBoard);
-		const menu = document.querySelector(".menu") as HTMLDivElement;
-		menu.style.transform = "scale(0)";
+		history.init(chessBoard);
 		History.clear();
 		Render.renderBoard(chessBoard);
+
+		const menu = document.querySelector(".menu") as HTMLDivElement;
+		menu.style.transform = "scale(0)";
 	});
 
 	document.getElementById("rotate")?.addEventListener("click", () => {
@@ -166,5 +162,13 @@ export function boardEvents(chessBoard: ChessBoard) {
 
 		board.classList.remove("theme-0", "theme-1", "theme-2");
 		board.classList.add(`theme-${current}`);
+	});
+
+	document.getElementById("undo")?.addEventListener("click", () => {
+		history.undo(chessBoard);
+	});
+
+	document.getElementById("redo")?.addEventListener("click", () => {
+		history.redo(chessBoard);
 	});
 }

@@ -12,7 +12,7 @@ export function start(chessBoard) {
     chessBoard.setCurrentPlayer("white");
     const winner = document.getElementById("win");
     if (winner)
-        winner.textContent = '';
+        winner.textContent = "";
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             chessBoard.deletePiece(i, j);

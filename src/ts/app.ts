@@ -1,11 +1,14 @@
 import { ChessBoard } from "./domain/chess_board.js";
 import * as func from "./domain/game.js";
 import { boardEvents } from "./domain/event.js";
+import { History } from './domain/history.js';
 
 func.generateHtmlCells();
 
-let chessBoard = new ChessBoard();
+const chessBoard = new ChessBoard();
+const history = new History();
 
-boardEvents(chessBoard);
+boardEvents(chessBoard, history);
 
 func.start(chessBoard);
+history.init(chessBoard);

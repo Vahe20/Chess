@@ -1,6 +1,7 @@
 import { ChessPiece } from "./chessPiece/chessPiece.js";
 export class Render {
     static renderBoard(chessBoard) {
+        this.clearSelectedCell();
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 const cell = document.querySelector(`.cell-${i}-${j}`);

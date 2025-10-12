@@ -10,5 +10,7 @@ export declare class ChessBoard {
     getPiece(i: number, j: number): ChessPiece | undefined;
     setPiece(i: number, j: number, Piece: ChessPiece): void;
     deletePiece(i: number, j: number): void;
+    clone(): ChessBoard;
+    loadState(chessBoard: ChessBoard): void;
 }
 //# sourceMappingURL=chess_board.d.ts.map

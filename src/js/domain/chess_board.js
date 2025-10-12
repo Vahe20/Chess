@@ -28,5 +28,29 @@ export class ChessBoard {
         }
         this.board[i][j] = undefined;
     }
+    clone() {
+        const newBoard = new ChessBoard(this.currentPlayer);
+        for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                const piece = this.getPiece(i, j);
+                if (piece) {
+                    newBoard.setPiece(i, j, piece.clone());
+                }
+            }
+        }
+        return newBoard;
+    }
+    loadState(chessBoard) {
+        this.board = Array.from({ length: 8 }, () => new Array(8).fill(undefined));
+        for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                const piece = chessBoard.getPiece(i, j);
+                if (piece) {
+                    this.setPiece(i, j, piece.clone());
+                }
+            }
+        }
+        this.currentPlayer = chessBoard.getCurrentPlayer();
+    }
 }
 //# sourceMappingURL=chess_board.js.map
