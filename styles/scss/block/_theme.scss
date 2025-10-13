@@ -36,3 +36,19 @@
 .board.theme-2 .black_cell {
     background-color: #6c8b4d;
 }
+
+#available_cell {
+    background-color: green;
+}
+
+#attack_cell {
+    background-color: red;
+}
+
+#castling_cell {
+    background-color: blue;
+}
+
+#check_cell {
+    background-color: yellow;
+}

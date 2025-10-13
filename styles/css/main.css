@@ -265,18 +265,6 @@ body {
   filter: drop-shadow(0 0 1px black);
   transition: var(--transition);
 }
-.wrap #available_cell {
-  background-color: green;
-}
-.wrap #attack_cell {
-  background-color: red;
-}
-.wrap #castling_cell {
-  background-color: blue;
-}
-.wrap #check_cell {
-  background-color: yellow;
-}
 
 @media (width <= 47.99875rem) {
   .wrap .board {
@@ -368,6 +356,22 @@ body {
 
 .board.theme-2 .black_cell {
   background-color: #6c8b4d;
+}
+
+#available_cell {
+  background-color: green;
+}
+
+#attack_cell {
+  background-color: red;
+}
+
+#castling_cell {
+  background-color: blue;
+}
+
+#check_cell {
+  background-color: yellow;
 }
 
 .moves-panel {

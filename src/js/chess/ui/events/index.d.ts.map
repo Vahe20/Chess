@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../ts/chess/ui/events/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,0BAA0B,CAAC;AACtD,OAAO,EAAE,IAAI,EAAE,MAAM,oBAAoB,CAAC;AAC1C,OAAO,EAAE,OAAO,EAAE,MAAM,uBAAuB,CAAC;AAMhD,wBAAgB,UAAU,CACzB,UAAU,EAAE,UAAU,EACtB,OAAO,EAAE,OAAO,EAChB,IAAI,EAAE,IAAI,QAKV"}

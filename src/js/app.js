@@ -1,11 +1,13 @@
-import { ChessBoard } from "./domain/chess_board.js";
-import * as func from "./domain/game.js";
-import { boardEvents } from "./domain/event.js";
-import { History } from './domain/history.js';
-func.generateHtmlCells();
+import { ChessBoard } from "./chess/core/ChessBoard.js";
+import { Game } from "./chess/core/Game.js";
+import { generateHtmlCells } from "./chess/ui/UIHelpers.js";
+import { History } from "./chess/core/history.js";
+import { initEvents } from "./chess/ui/events/index.js";
+generateHtmlCells();
 const chessBoard = new ChessBoard();
 const history = new History();
-boardEvents(chessBoard, history);
-func.start(chessBoard);
+const game = new Game(chessBoard);
+initEvents(chessBoard, history, game);
+game.start();
 history.init(chessBoard);
 //# sourceMappingURL=app.js.map

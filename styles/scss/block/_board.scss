@@ -32,22 +32,6 @@
             }
         }
     }
-
-    #available_cell {
-        background-color: green;
-    }
-
-    #attack_cell {
-        background-color: red;
-    }
-
-    #castling_cell {
-        background-color: blue;
-    }
-
-    #check_cell {
-        background-color: yellow;
-    }
 }
 
 @include mobile {

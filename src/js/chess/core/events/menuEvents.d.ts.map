@@ -1,0 +1,1 @@
+{"version":3,"file":"menuEvents.d.ts","sourceRoot":"","sources":["../../../../ts/chess/core/events/menuEvents.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,kBAAkB,CAAC;AAC9C,OAAO,EAAE,OAAO,EAAE,MAAM,eAAe,CAAC;AAExC,OAAO,EAAE,IAAI,EAAE,MAAM,SAAS,CAAC;AAE/B,wBAAgB,cAAc,CAAC,UAAU,EAAE,UAAU,EAAE,OAAO,EAAE,OAAO,EAAE,IAAI,EAAE,IAAI,QA4ClF"}

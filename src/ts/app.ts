@@ -1,14 +1,17 @@
-import { ChessBoard } from "./domain/chess_board.js";
-import * as func from "./domain/game.js";
-import { boardEvents } from "./domain/event.js";
-import { History } from './domain/history.js';
+import { ChessBoard } from "./chess/core/ChessBoard.js";
+import { Game } from "./chess/core/Game.js";
+import { generateHtmlCells } from "./chess/ui/UIHelpers.js";
+import { History } from "./chess/core/history.js";
+import { initEvents } from "./chess/ui/events/index.js";
 
-func.generateHtmlCells();
+generateHtmlCells();
 
 const chessBoard = new ChessBoard();
 const history = new History();
 
-boardEvents(chessBoard, history);
+const game = new Game(chessBoard);
 
-func.start(chessBoard);
+initEvents(chessBoard, history, game);
+game.start();
+
 history.init(chessBoard);
