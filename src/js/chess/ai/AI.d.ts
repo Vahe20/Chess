@@ -1,6 +1,7 @@
 import { ChessBoard } from "../core/ChessBoard.js";
 import { ChessPiece } from "../chessPiece/chessPiece.js";
 import * as Types from "../Types.js";
+import { History } from '../core/history';
 export declare class AI {
     static pieceValue: Record<string, number>;
     static positionBonus(row: number, col: number, type: string): number;
@@ -14,7 +15,7 @@ export declare class AI {
         piece: ChessPiece;
         move: Types.position;
     } | null | undefined;
-    static makeMove(chessBoard: ChessBoard, color: Types.typePieceColor, level: string): void;
+    static makeMove(chessBoard: ChessBoard, history: History, color: Types.typePieceColor, level: string): void;
     static cloneBoard(chessBoard: ChessBoard): ChessBoard;
 }
 //# sourceMappingURL=AI.d.ts.map

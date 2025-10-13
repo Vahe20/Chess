@@ -45,11 +45,6 @@ export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 
 					if (Rules.isMath(chessBoard)) {
 						Render.renderMath(chessBoard);
-					} else if (chessBoard.getCurrentPlayer() === "black") {
-						setTimeout(() => {
-							AI.makeMove(chessBoard, "black", "hard");
-							chessBoard.changeCurrentPlayer();
-						}, 500);
 					}
 				}
 

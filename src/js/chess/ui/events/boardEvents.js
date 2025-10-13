@@ -34,7 +34,7 @@ export function initBoardEvents(chessBoard, history) {
                     }
                     else if (chessBoard.getCurrentPlayer() === "black") {
                         setTimeout(() => {
-                            AI.makeMove(chessBoard, "black", "hard");
+                            AI.makeMove(chessBoard, history, "black", "hard");
                             chessBoard.changeCurrentPlayer();
                         }, 500);
                     }
@@ -55,6 +55,12 @@ export function initBoardEvents(chessBoard, history) {
                     history.push(pos, { row, col }, targetPiece, chessBoard);
                     if (Rules.isMath(chessBoard)) {
                         Render.renderMath(chessBoard);
+                    }
+                    else if (chessBoard.getCurrentPlayer() === "black") {
+                        setTimeout(() => {
+                            AI.makeMove(chessBoard, history, "black", "hard");
+                            chessBoard.changeCurrentPlayer();
+                        }, 500);
                     }
                 }
             }

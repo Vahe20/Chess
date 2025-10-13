@@ -107,7 +107,7 @@ export class AI {
         }
         return bestMove;
     }
-    static makeMove(chessBoard, color, level) {
+    static makeMove(chessBoard, history, color, level) {
         const move = this.getBestMove(chessBoard, color, level);
         if (!move)
             return;
@@ -115,6 +115,7 @@ export class AI {
         const newPos = move.move;
         move.piece.move(chessBoard, oldPos, newPos);
         Render.movePieceAnim(chessBoard, oldPos, newPos);
+        history.push(oldPos, newPos, chessBoard.getPiece(newPos.row, newPos.col), chessBoard);
     }
     static cloneBoard(chessBoard) {
         var _a;
