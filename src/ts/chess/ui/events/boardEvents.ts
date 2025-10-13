@@ -4,6 +4,7 @@ import { Render } from "../Render.js";
 import { History } from "../../core/history.js";
 import { Rules } from "../../core/Rules.js";
 import { selectPiecePromotion, isPawnPromotion } from "../../core/Promotion.js";
+import { AI } from "../../ai/AI.js";
 
 export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 	let selectedPiece: ChessPiece | undefined = undefined;
@@ -44,6 +45,11 @@ export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 
 					if (Rules.isMath(chessBoard)) {
 						Render.renderMath(chessBoard);
+					} else if (chessBoard.getCurrentPlayer() === "black") {
+						setTimeout(() => {
+							AI.makeMove(chessBoard, "black", "hard");
+							chessBoard.changeCurrentPlayer();
+						}, 500);
 					}
 				}
 
@@ -88,7 +94,7 @@ export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 						return Rules.virtualBoard(
 							chessBoard,
 							{ row: row, col: col },
-							{ row: pos.row, col: pos.col }
+							pos
 						);
 					});
 

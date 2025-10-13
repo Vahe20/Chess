@@ -1,6 +1,7 @@
 import { Render } from "../Render.js";
 import { Rules } from "../../core/Rules.js";
 import { selectPiecePromotion, isPawnPromotion } from "../../core/Promotion.js";
+import { AI } from "../../ai/AI.js";
 export function initBoardEvents(chessBoard, history) {
     var _a;
     let selectedPiece = undefined;
@@ -31,6 +32,12 @@ export function initBoardEvents(chessBoard, history) {
                     if (Rules.isMath(chessBoard)) {
                         Render.renderMath(chessBoard);
                     }
+                    else if (chessBoard.getCurrentPlayer() === "black") {
+                        setTimeout(() => {
+                            AI.makeMove(chessBoard, "black", "hard");
+                            chessBoard.changeCurrentPlayer();
+                        }, 500);
+                    }
                 }
                 if (cell && cell.id === "castling_cell") {
                     const pos = selectedPiece.getPosition();
@@ -57,7 +64,7 @@ export function initBoardEvents(chessBoard, history) {
                 Render.clearSelectedCell();
                 selectedPiece = chessBoard.getPiece(row, col);
                 const av_moves = (_b = selectedPiece === null || selectedPiece === void 0 ? void 0 : selectedPiece.getAvailableMoves(chessBoard)) === null || _b === void 0 ? void 0 : _b.filter(pos => {
-                    return Rules.virtualBoard(chessBoard, { row: row, col: col }, { row: pos.row, col: pos.col });
+                    return Rules.virtualBoard(chessBoard, { row: row, col: col }, pos);
                 });
                 const castling_pos = (_d = (_c = selectedPiece).castling) === null || _d === void 0 ? void 0 : _d.call(_c, chessBoard);
                 if (castling_pos) {
