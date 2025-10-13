@@ -28,18 +28,6 @@ export function initMenuEvents(
 		menu.style.transform = "scale(0)";
 	});
 
-	document.getElementById("rotate")?.addEventListener("click", () => {
-		const blackPieces = document.getElementsByClassName("black");
-
-		for (let i = 0; i < blackPieces.length; i++) {
-			const el = blackPieces[i] as HTMLElement;
-			el.style.transform =
-				el.style.transform === "rotate(180deg)"
-					? "rotate(0deg)"
-					: "rotate(180deg)";
-		}
-	});
-
 	document.getElementById("changeColor")?.addEventListener("click", () => {
 		const board = document.querySelector(".board") as HTMLElement | null;
 		if (!board) return;

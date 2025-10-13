@@ -1,7 +1,7 @@
 import { History } from "../../core/history.js";
 import { Render } from "../Render.js";
 export function initMenuEvents(chessBoard, history, game) {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d;
     (_a = document.getElementById("menu_open")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
         const menu = document.querySelector(".menu");
         menu.style.transform = "scale(1)";
@@ -18,17 +18,7 @@ export function initMenuEvents(chessBoard, history, game) {
         const menu = document.querySelector(".menu");
         menu.style.transform = "scale(0)";
     });
-    (_d = document.getElementById("rotate")) === null || _d === void 0 ? void 0 : _d.addEventListener("click", () => {
-        const blackPieces = document.getElementsByClassName("black");
-        for (let i = 0; i < blackPieces.length; i++) {
-            const el = blackPieces[i];
-            el.style.transform =
-                el.style.transform === "rotate(180deg)"
-                    ? "rotate(0deg)"
-                    : "rotate(180deg)";
-        }
-    });
-    (_e = document.getElementById("changeColor")) === null || _e === void 0 ? void 0 : _e.addEventListener("click", () => {
+    (_d = document.getElementById("changeColor")) === null || _d === void 0 ? void 0 : _d.addEventListener("click", () => {
         var _a;
         const board = document.querySelector(".board");
         if (!board)
