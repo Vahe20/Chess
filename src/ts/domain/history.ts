@@ -26,13 +26,11 @@ export class History {
 	private head: node | null;
 	private tail: node | null;
 	private size: number;
-	private current: node | null;
 
 	constructor() {
 		this.head = null;
 		this.tail = null;
 		this.size = 0;
-		this.current = null;
 	}
 
 	init(chessBoard: ChessBoard) {
@@ -44,7 +42,6 @@ export class History {
 		});
 		this.head = initialNode;
 		this.tail = initialNode;
-		this.current = initialNode;
 		this.size = 1;
 	}
 
@@ -61,15 +58,13 @@ export class History {
 			chessBoard: chessBoard.clone(),
 		});
 		
-		if (this.current) {
-			this.current.next = newNode;
-			newNode.prev = this.current;
-			this.current = newNode;
+		if (this.tail) {
+			this.tail.next = newNode;
+			newNode.prev = this.tail;
 			this.tail = newNode;
 		} else {
 			this.head = newNode;
 			this.tail = newNode;
-			this.current = newNode;
 		}
 
 		this.size++;
@@ -77,27 +72,27 @@ export class History {
 	}
 
 	undo(chessBoard: ChessBoard) {
-		if (this.current && this.current.prev) {
-			this.current = this.current.prev;
+		if (this.tail && this.tail.prev) {
+			this.tail = this.tail.prev;
 			Render.movePieceAnim(
 				chessBoard,
-				this.current.next!.value.newPos,
-				this.current.next!.value.oldPos
+				this.tail.next!.value.newPos,
+				this.tail.next!.value.oldPos
 			);
-			chessBoard.loadState(this.current.value.chessBoard);
+			chessBoard.loadState(this.tail.value.chessBoard);
 			this.renderHistory();
 		}
 	}
 
 	redo(chessBoard: ChessBoard) {
-		if (this.current && this.current.next) {
-			this.current = this.current.next;
+		if (this.tail && this.tail.next) {
+			this.tail = this.tail.next;
 			Render.movePieceAnim(
 				chessBoard,
-				this.current.value.oldPos,
-				this.current.value.newPos
+				this.tail.value.oldPos,
+				this.tail.value.newPos
 			);
-			chessBoard.loadState(this.current.value.chessBoard);
+			chessBoard.loadState(this.tail.value.chessBoard);
 			this.renderHistory();
 		}
 	}
