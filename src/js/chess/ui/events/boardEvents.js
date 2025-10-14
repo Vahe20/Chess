@@ -1,7 +1,6 @@
 import { Render } from "../Render.js";
 import { Rules } from "../../core/Rules.js";
 import { selectPiecePromotion, isPawnPromotion } from "../../core/Promotion.js";
-import { AI } from "../../ai/AI.js";
 export function initBoardEvents(chessBoard, history) {
     var _a;
     let selectedPiece = undefined;
@@ -32,12 +31,6 @@ export function initBoardEvents(chessBoard, history) {
                     if (Rules.isMath(chessBoard)) {
                         Render.renderMath(chessBoard);
                     }
-                    else if (chessBoard.getCurrentPlayer() === "black") {
-                        setTimeout(() => {
-                            AI.makeMove(chessBoard, history, "black", "hard");
-                            chessBoard.changeCurrentPlayer();
-                        }, 500);
-                    }
                 }
                 if (cell && cell.id === "castling_cell") {
                     const pos = selectedPiece.getPosition();
@@ -55,12 +48,6 @@ export function initBoardEvents(chessBoard, history) {
                     history.push(pos, { row, col }, targetPiece, chessBoard);
                     if (Rules.isMath(chessBoard)) {
                         Render.renderMath(chessBoard);
-                    }
-                    else if (chessBoard.getCurrentPlayer() === "black") {
-                        setTimeout(() => {
-                            AI.makeMove(chessBoard, history, "black", "hard");
-                            chessBoard.changeCurrentPlayer();
-                        }, 500);
                     }
                 }
             }

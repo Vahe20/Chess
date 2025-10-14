@@ -4,17 +4,10 @@ import * as Types from "../Types.js";
 import { History } from '../core/history';
 export declare class AI {
     static pieceValue: Record<string, number>;
-    static positionBonus(row: number, col: number, type: string): number;
-    static evaluateBoard(chessBoard: ChessBoard, color: Types.typePieceColor, level: string): number;
     static getAllMoves(chessBoard: ChessBoard, color: Types.typePieceColor): {
         piece: ChessPiece;
         move: Types.position;
     }[];
-    static minimax(chessBoard: ChessBoard, depth: number, maximizingPlayer: boolean, color: Types.typePieceColor, level: string, alpha?: number, beta?: number): number;
-    static getBestMove(chessBoard: ChessBoard, color: Types.typePieceColor, level: string): {
-        piece: ChessPiece;
-        move: Types.position;
-    } | null | undefined;
     static makeMove(chessBoard: ChessBoard, history: History, color: Types.typePieceColor, level: string): void;
     static cloneBoard(chessBoard: ChessBoard): ChessBoard;
 }
