@@ -36,8 +36,9 @@ export class ChessPiece {
     setImg(img) {
         this.img = img;
     }
-    move(chessBoard, pos, newPos) {
+    move(chessBoard, newPos) {
         this.changeStatus();
+        const pos = this.getPosition();
         chessBoard.deletePiece(pos.row, pos.col);
         chessBoard.setPiece(newPos.row, newPos.col, this);
         this.setPosition({ row: newPos.row, col: newPos.col });

@@ -1,6 +1,7 @@
 import { Render } from "../Render.js";
 import { Rules } from "../../core/Rules.js";
 import { selectPiecePromotion, isPawnPromotion } from "../../core/Promotion.js";
+import { AI } from "../../ai/AI.js";
 export function initBoardEvents(chessBoard, history) {
     var _a;
     let selectedPiece = undefined;
@@ -21,7 +22,7 @@ export function initBoardEvents(chessBoard, history) {
                 if (cell && cell.id === "available_cell") {
                     const pos = selectedPiece.getPosition();
                     const targetPiece = chessBoard.getPiece(row, col);
-                    selectedPiece.move(chessBoard, pos, { row, col });
+                    selectedPiece.move(chessBoard, { row, col });
                     Render.movePieceAnim(chessBoard, pos, { row, col });
                     if (isPawnPromotion(chessBoard, row, col)) {
                         selectPiecePromotion(chessBoard, row, col);
@@ -31,18 +32,22 @@ export function initBoardEvents(chessBoard, history) {
                     if (Rules.isMath(chessBoard)) {
                         Render.renderMath(chessBoard);
                     }
+                    else if (chessBoard.getCurrentPlayer() === "black") {
+                        AI.makeMove(chessBoard, history, "black", "normal");
+                        chessBoard.changeCurrentPlayer();
+                    }
                 }
                 if (cell && cell.id === "castling_cell") {
                     const pos = selectedPiece.getPosition();
                     const targetPiece = chessBoard.getPiece(row, col);
                     Render.movePieceAnim(chessBoard, pos, { row, col });
-                    selectedPiece.move(chessBoard, pos, { row, col });
+                    selectedPiece.move(chessBoard, { row, col });
                     const rook = chessBoard.getPiece(row, col === 6 ? 7 : 0);
                     if (rook) {
                         const oldPos = { row: row, col: col === 6 ? 7 : 0 };
                         const newPos = { row: row, col: col === 6 ? 5 : 3 };
                         Render.movePieceAnim(chessBoard, oldPos, newPos);
-                        rook.move(chessBoard, oldPos, newPos);
+                        rook.move(chessBoard, newPos);
                     }
                     chessBoard.changeCurrentPlayer();
                     history.push(pos, { row, col }, targetPiece, chessBoard);

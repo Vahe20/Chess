@@ -106,7 +106,7 @@ export class History {
 		}
 	}
 
-	private static addMove(
+	static addMove(
 		oldPos: Types.position,
 		newPos: Types.position,
 		chessPiece: ChessPiece | undefined

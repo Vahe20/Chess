@@ -31,7 +31,7 @@ export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 
 					const targetPiece = chessBoard.getPiece(row, col);
 
-					selectedPiece.move(chessBoard, pos, { row, col });
+					selectedPiece.move(chessBoard, { row, col });
 
 					Render.movePieceAnim(chessBoard, pos, { row, col });
 
@@ -45,6 +45,9 @@ export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 
 					if (Rules.isMath(chessBoard)) {
 						Render.renderMath(chessBoard);
+					} else if (chessBoard.getCurrentPlayer() === "black") {
+						AI.makeMove(chessBoard, history, "black", "easy");
+						chessBoard.changeCurrentPlayer();
 					}
 				}
 
@@ -54,7 +57,7 @@ export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 					const targetPiece = chessBoard.getPiece(row, col);
 
 					Render.movePieceAnim(chessBoard, pos, { row, col });
-					selectedPiece.move(chessBoard, pos, { row, col });
+					selectedPiece.move(chessBoard, { row, col });
 
 					const rook = chessBoard.getPiece(row, col === 6 ? 7 : 0);
 					if (rook) {
@@ -62,7 +65,7 @@ export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 						const newPos = { row: row, col: col === 6 ? 5 : 3 };
 
 						Render.movePieceAnim(chessBoard, oldPos, newPos);
-						rook.move(chessBoard, oldPos, newPos);
+						rook.move(chessBoard, newPos);
 					}
 
 					chessBoard.changeCurrentPlayer();

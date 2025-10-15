@@ -66,10 +66,10 @@ export abstract class ChessPiece {
 
 	move(
 		chessBoard: ChessBoard,
-		pos: Types.position,
 		newPos: Types.position
 	): void {
 		this.changeStatus();
+		const pos = this.getPosition();
 		chessBoard.deletePiece(pos.row, pos.col);
 		chessBoard.setPiece(newPos.row, newPos.col, this);
 		this.setPosition({ row: newPos.row, col: newPos.col });
