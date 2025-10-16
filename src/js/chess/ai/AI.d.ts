@@ -3,10 +3,7 @@ import { ChessPiece } from "../chessPiece/chessPiece.js";
 import * as Types from "../Types.js";
 import { History } from "../core/history.js";
 export declare class AI {
-    static getScore(ChessBoard: ChessBoard, move: {
-        piece: ChessPiece;
-        move: Types.position;
-    }): number;
+    static getScore(chessBoard: ChessBoard, color: Types.typePieceColor): number;
     static getAllMoves(chessBoard: ChessBoard, color: Types.typePieceColor): {
         piece: ChessPiece;
         move: Types.position;

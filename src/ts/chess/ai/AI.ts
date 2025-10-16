@@ -6,26 +6,22 @@ import { History } from "../core/history.js";
 import { gameMode } from "../Enums.js";
 import { PricePiece } from "../Enums.js";
 import { moveHandler } from "../ui/events/helper.js";
-
+import { GameMode } from "../core/GameMode.js";
 
 export class AI {
 	static getScore(
-		ChessBoard: ChessBoard,
-		move: { piece: ChessPiece; move: Types.position },
+		chessBoard: ChessBoard,
+		color: Types.typePieceColor
 	): number {
 		let score = 0;
-
-		const piece = move.piece;
-		const oldPos = piece.getPosition();
-		const newPos = move.move;
-
-		const attack = ChessBoard.getPiece(newPos.row, newPos.col);
-
-		if (attack) {
-			const type = attack.getType();
-			score += PricePiece[`${type}`];
+		for (let i = 0; i < 8; i++) {
+			for (let j = 0; j < 8; j++) {
+				const piece = chessBoard.getPiece(i, j);
+				if (!piece) continue;
+				const value = PricePiece[piece.getType()];
+				score += piece.getColor() === color ? value : -value;
+			}
 		}
-		
 		return score;
 	}
 
@@ -54,35 +50,84 @@ export class AI {
 
 		return moves;
 	}
+	
 
 	static getBestMove(
 		ChessBoard: ChessBoard,
-		color: Types.typePieceColor,
+		color: Types.typePieceColor
 	): { piece: ChessPiece; move: Types.position } | undefined {
-		const moves = this.getAllMoves(ChessBoard, color);
+		if (GameMode.getGameMode() === gameMode.easy) {
+			const moves = this.getAllMoves(ChessBoard, color);
+			if (moves.length === 0) return undefined;
 
-		if (moves.length === 0) return undefined;
+			let bestMove = moves[Math.floor(Math.random() * moves.length)];
+			let bestScore: number = -Infinity;
 
-		let bestMove = moves[Math.floor(Math.random() * moves.length)];
-		let bestScore: number = 0;
+			for (const move of moves) {
+				const boardClone = ChessBoard.clone();
+				const piece = boardClone.getPiece(move.piece.getPosition().row, move.piece.getPosition().col);
+				piece?.move(boardClone, move.move);
 
-		for (const move of moves) {
-			const newBoard = ChessBoard.clone();
-			const score = this.getScore(newBoard, move);
-
-			if (score > bestScore) {
-				bestScore = score;
-				bestMove = move;
+				const score = this.getScore(boardClone, color) + Math.random() * 0.5;
+				if (score > bestScore) {
+					bestScore = score;
+					bestMove = move;
+				}
 			}
-		}
 
-		return bestMove;
+			return bestMove;
+		}
+		
+		if (GameMode.getGameMode() === gameMode.medium) {
+			const moves = this.getAllMoves(ChessBoard, color);
+			if (moves.length === 0) return undefined;
+
+			let bestMove = moves[0];
+			let bestScore = -Infinity;
+
+			for (const move of moves) {
+				const boardClone = ChessBoard.clone();
+				const piece = boardClone.getPiece(
+					move.piece.getPosition().row,
+					move.piece.getPosition().col
+				);
+				
+				piece?.move(boardClone, move.move);
+
+				let score = this.getScore(boardClone, color);
+
+				const opponentColor = color === "white" ? "black" : "white";
+				const opponentMoves = this.getAllMoves(
+					boardClone,
+					opponentColor
+				);
+
+				let worstResponse = 0;
+				for (const oppMove of opponentMoves) {
+					worstResponse = Math.max(
+						worstResponse,
+						this.getScore(boardClone, opponentColor)
+					);
+				}
+
+				score -= worstResponse;
+
+				if (score > bestScore) {
+					bestScore = score;
+					bestMove = move;
+				}
+			}
+
+			return bestMove;
+		}
+		if (GameMode.getGameMode() === gameMode.hard) {
+		}
 	}
 
 	static makeMove(
 		chessBoard: ChessBoard,
 		history: History,
-		color: Types.typePieceColor,
+		color: Types.typePieceColor
 	) {
 		const move = this.getBestMove(chessBoard, color);
 
