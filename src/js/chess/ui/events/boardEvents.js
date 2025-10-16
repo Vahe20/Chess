@@ -9,8 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { Render } from "../Render.js";
 import { Rules } from "../../core/Rules.js";
-import { selectPiecePromotion, isPawnPromotion } from "../../core/Promotion.js";
-import { mathHandler, moveHandler } from "./helper.js";
+import { mathHandler, moveHandler, promotionHandler } from "./helper.js";
 export function initBoardEvents(chessBoard, history) {
     var _a;
     let selectedPiece = undefined;
@@ -34,22 +33,7 @@ export function initBoardEvents(chessBoard, history) {
                         row,
                         col,
                     });
-                    if (isPawnPromotion(chessBoard, row, col)) {
-                        selectPiecePromotion(chessBoard, row, col);
-                        const promote = document.querySelector(".promote");
-                        yield new Promise(resolve => {
-                            const observer = new MutationObserver(() => {
-                                if (promote.style.transform === "scale(0)") {
-                                    observer.disconnect();
-                                    resolve();
-                                }
-                            });
-                            observer.observe(promote, {
-                                attributes: true,
-                                attributeFilter: ["style"],
-                            });
-                        });
-                    }
+                    yield promotionHandler(chessBoard, row, col);
                     mathHandler(chessBoard, history);
                 }
                 if (cell && cell.id === "castling_cell") {

@@ -7,6 +7,7 @@ import { Rules } from "../../core/Rules.js";
 import { gameMode } from "../../Enums.js";
 import { GameMode } from "../../core/GameMode.js";
 import { AI } from "../../ai/AI.js";
+import { isPawnPromotion, selectPiecePromotion } from "../../core/Promotion.js";
 
 const moveHandler = (
 	chessBoard: ChessBoard,
@@ -23,7 +24,26 @@ const moveHandler = (
 	history.push(oldPos, newPos, targetPiece, chessBoard);
 };
 
-function promotionHandler() {}
+async function promotionHandler (chessBoard: ChessBoard, row: number, col: number) {
+	if (isPawnPromotion(chessBoard, row, col)) {
+		selectPiecePromotion(chessBoard, row, col);
+
+		const promote = document.querySelector(".promote") as HTMLDivElement;
+
+		await new Promise<void>(resolve => {
+			const observer = new MutationObserver(() => {
+				if (promote.style.transform === "scale(0)") {
+					observer.disconnect();
+					resolve();
+				}
+			});
+			observer.observe(promote, {
+				attributes: true,
+				attributeFilter: ["style"],
+			});
+		});
+	}
+};
 
 const mathHandler = (chessBoard: ChessBoard, history: History) => {
 	if (Rules.isMath(chessBoard)) {
@@ -44,4 +64,4 @@ const AiMove = (chessBoard: ChessBoard, history: History) => {
 	}
 };
 
-export { moveHandler, mathHandler };
+export { moveHandler, mathHandler, promotionHandler };

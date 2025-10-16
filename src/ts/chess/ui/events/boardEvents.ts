@@ -3,8 +3,7 @@ import { ChessPiece } from "../../chessPiece/chessPiece.js";
 import { Render } from "../Render.js";
 import { History } from "../../core/history.js";
 import { Rules } from "../../core/Rules.js";
-import { selectPiecePromotion, isPawnPromotion } from "../../core/Promotion.js";
-import { mathHandler, moveHandler } from "./helper.js";
+import { mathHandler, moveHandler, promotionHandler } from "./helper.js";
 
 export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 	let selectedPiece: ChessPiece | undefined = undefined;
@@ -34,26 +33,7 @@ export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 						col,
 					});
 
-					if (isPawnPromotion(chessBoard, row, col)) {
-						selectPiecePromotion(chessBoard, row, col);
-
-						const promote = document.querySelector(
-							".promote"
-						) as HTMLDivElement;
-
-						await new Promise<void>(resolve => {
-							const observer = new MutationObserver(() => {
-								if (promote.style.transform === "scale(0)") {
-									observer.disconnect();
-									resolve();
-								}
-							});
-							observer.observe(promote, {
-								attributes: true,
-								attributeFilter: ["style"],
-							});
-						});
-					}
+					await promotionHandler(chessBoard, row, col);
 
 					mathHandler(chessBoard, history);
 					
