@@ -1,11 +1,20 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { Render } from "../Render.js";
 import { Rules } from "../../core/Rules.js";
 import { selectPiecePromotion, isPawnPromotion } from "../../core/Promotion.js";
-import { AI } from "../../ai/AI.js";
+import { mathHandler, moveHandler } from "./helper.js";
 export function initBoardEvents(chessBoard, history) {
     var _a;
     let selectedPiece = undefined;
-    (_a = document.querySelector(".board")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", event => {
+    (_a = document.querySelector(".board")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", (event) => __awaiter(this, void 0, void 0, function* () {
         var _a, _b, _c, _d;
         if (event.target instanceof Element) {
             const cell = event.target.closest(".board_cell");
@@ -21,27 +30,34 @@ export function initBoardEvents(chessBoard, history) {
                 const cell = document.querySelector(`.cell-${row}-${col}`);
                 if (cell && cell.id === "available_cell") {
                     const pos = selectedPiece.getPosition();
-                    const targetPiece = chessBoard.getPiece(row, col);
-                    selectedPiece.move(chessBoard, { row, col });
-                    Render.movePieceAnim(chessBoard, pos, { row, col });
+                    moveHandler(chessBoard, selectedPiece, history, pos, {
+                        row,
+                        col,
+                    });
                     if (isPawnPromotion(chessBoard, row, col)) {
                         selectPiecePromotion(chessBoard, row, col);
+                        const promote = document.querySelector(".promote");
+                        yield new Promise(resolve => {
+                            const observer = new MutationObserver(() => {
+                                if (promote.style.transform === "scale(0)") {
+                                    observer.disconnect();
+                                    resolve();
+                                }
+                            });
+                            observer.observe(promote, {
+                                attributes: true,
+                                attributeFilter: ["style"],
+                            });
+                        });
                     }
-                    chessBoard.changeCurrentPlayer();
-                    history.push(pos, { row, col }, targetPiece, chessBoard);
-                    if (Rules.isMath(chessBoard)) {
-                        Render.renderMath(chessBoard);
-                    }
-                    else if (chessBoard.getCurrentPlayer() === "black") {
-                        AI.makeMove(chessBoard, history, "black", "normal");
-                        chessBoard.changeCurrentPlayer();
-                    }
+                    mathHandler(chessBoard, history);
                 }
                 if (cell && cell.id === "castling_cell") {
                     const pos = selectedPiece.getPosition();
-                    const targetPiece = chessBoard.getPiece(row, col);
-                    Render.movePieceAnim(chessBoard, pos, { row, col });
-                    selectedPiece.move(chessBoard, { row, col });
+                    moveHandler(chessBoard, selectedPiece, history, pos, {
+                        row,
+                        col,
+                    });
                     const rook = chessBoard.getPiece(row, col === 6 ? 7 : 0);
                     if (rook) {
                         const oldPos = { row: row, col: col === 6 ? 7 : 0 };
@@ -49,11 +65,7 @@ export function initBoardEvents(chessBoard, history) {
                         Render.movePieceAnim(chessBoard, oldPos, newPos);
                         rook.move(chessBoard, newPos);
                     }
-                    chessBoard.changeCurrentPlayer();
-                    history.push(pos, { row, col }, targetPiece, chessBoard);
-                    if (Rules.isMath(chessBoard)) {
-                        Render.renderMath(chessBoard);
-                    }
+                    mathHandler(chessBoard, history);
                 }
             }
             if (chessBoard.getPiece(row, col) &&
@@ -77,6 +89,6 @@ export function initBoardEvents(chessBoard, history) {
                 Render.clearSelectedCell();
             }
         }
-    });
+    }));
 }
 //# sourceMappingURL=boardEvents.js.map

@@ -11,7 +11,7 @@ export declare class History {
     undo(chessBoard: ChessBoard): void;
     redo(chessBoard: ChessBoard): void;
     renderHistory(): void;
-    static addMove(oldPos: Types.position, newPos: Types.position, chessPiece: ChessPiece | undefined): void;
+    private static addMove;
     static clear(): void;
 }
 //# sourceMappingURL=history.d.ts.map

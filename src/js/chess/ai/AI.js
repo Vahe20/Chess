@@ -1,23 +1,8 @@
 import { Rules } from "../core/Rules.js";
-import { Render } from "../ui/Render.js";
-import { History } from "../core/history.js";
-var PricePiece;
-(function (PricePiece) {
-    PricePiece[PricePiece["pawn"] = 10] = "pawn";
-    PricePiece[PricePiece["knight"] = 30] = "knight";
-    PricePiece[PricePiece["bishop"] = 30] = "bishop";
-    PricePiece[PricePiece["rook"] = 50] = "rook";
-    PricePiece[PricePiece["queen"] = 90] = "queen";
-    PricePiece[PricePiece["king"] = 1000] = "king";
-})(PricePiece || (PricePiece = {}));
-var Level;
-(function (Level) {
-    Level[Level["high"] = 3] = "high";
-    Level[Level["normal"] = 2] = "normal";
-    Level[Level["easy"] = 1] = "easy";
-})(Level || (Level = {}));
+import { PricePiece } from "../Enums.js";
+import { moveHandler } from "../ui/events/helper.js";
 export class AI {
-    static getScore(ChessBoard, move, level) {
+    static getScore(ChessBoard, move) {
         let score = 0;
         const piece = move.piece;
         const oldPos = piece.getPosition();
@@ -46,7 +31,7 @@ export class AI {
         }
         return moves;
     }
-    static getBestMove(ChessBoard, color, level) {
+    static getBestMove(ChessBoard, color) {
         const moves = this.getAllMoves(ChessBoard, color);
         if (moves.length === 0)
             return undefined;
@@ -54,7 +39,7 @@ export class AI {
         let bestScore = 0;
         for (const move of moves) {
             const newBoard = ChessBoard.clone();
-            const score = this.getScore(newBoard, move, level);
+            const score = this.getScore(newBoard, move);
             if (score > bestScore) {
                 bestScore = score;
                 bestMove = move;
@@ -62,26 +47,13 @@ export class AI {
         }
         return bestMove;
     }
-    static makeMove(chessBoard, history, color, level) {
-        let levelValue;
-        if (level === "easy")
-            levelValue = Level.easy;
-        else if (level === "normal")
-            levelValue = Level.normal;
-        else if (level === "high")
-            levelValue = Level.high;
-        else if (typeof level === "number")
-            levelValue = level;
-        else
-            throw new Error("Invalid Level");
-        const move = this.getBestMove(chessBoard, color, levelValue);
+    static makeMove(chessBoard, history, color) {
+        const move = this.getBestMove(chessBoard, color);
         if (!move)
             return;
         const oldPos = move.piece.getPosition();
         const newPos = move.move;
-        History.addMove(oldPos, newPos, chessBoard.getPiece(newPos.row, newPos.col));
-        move.piece.move(chessBoard, newPos);
-        Render.movePieceAnim(chessBoard, oldPos, newPos);
+        moveHandler(chessBoard, move.piece, history, oldPos, newPos);
     }
 }
 //# sourceMappingURL=AI.js.map

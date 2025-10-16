@@ -1,0 +1,1 @@
+{"version":3,"file":"GameMode.d.ts","sourceRoot":"","sources":["../../../ts/chess/core/GameMode.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,aAAa,CAAA;AAEtC,qBAAa,QAAQ;IACpB,MAAM,CAAC,QAAQ,EAAE,QAAQ,CAA8B;IAEvD,MAAM,CAAC,WAAW,IAAI,QAAQ;IAI9B,MAAM,CAAC,WAAW,CAAC,IAAI,EAAE,QAAQ;IAKjC,OAAO,CAAC,MAAM,CAAC,eAAe;CAO9B"}

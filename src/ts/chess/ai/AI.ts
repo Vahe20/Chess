@@ -2,23 +2,11 @@ import { ChessBoard } from "../core/ChessBoard.js";
 import { ChessPiece } from "../chessPiece/chessPiece.js";
 import * as Types from "../Types.js";
 import { Rules } from "../core/Rules.js";
-import { Render } from "../ui/Render.js";
 import { History } from "../core/history.js";
+import { gameMode } from "../Enums.js";
+import { PricePiece } from "../Enums.js";
+import { moveHandler } from "../ui/events/helper.js";
 
-enum PricePiece {
-	pawn = 10,
-	knight = 30,
-	bishop = 30,
-	rook = 50,
-	queen = 90,
-	king = 1000,
-}
-
-enum Level {
-	high = 3,
-	normal = 2,
-	easy = 1
-}
 
 export class AI {
 	static getScore(
@@ -95,7 +83,6 @@ export class AI {
 		chessBoard: ChessBoard,
 		history: History,
 		color: Types.typePieceColor,
-		level: string | Level
 	) {
 		const move = this.getBestMove(chessBoard, color);
 
@@ -104,12 +91,6 @@ export class AI {
 		const oldPos = move.piece.getPosition();
 		const newPos = move.move;
 
-		History.addMove(
-			oldPos,
-			newPos,
-			chessBoard.getPiece(newPos.row, newPos.col)
-		);
-		move.piece.move(chessBoard, newPos);
-		Render.movePieceAnim(chessBoard, oldPos, newPos);
+		moveHandler(chessBoard, move.piece, history, oldPos, newPos);
 	}
 }

@@ -2,6 +2,8 @@ import * as Types from "../Types.js";
 import { ChessPiece } from "../chessPiece/chessPiece.js";
 import { ChessBoard } from "./ChessBoard.js";
 import { Render } from "../ui/Render.js";
+import { GameMode } from "./GameMode.js";
+import { gameMode } from "../Enums.js";
 
 type move = {
 	oldPos: Types.position;
@@ -82,6 +84,18 @@ export class History {
 			chessBoard.loadState(this.tail.value.chessBoard);
 			this.renderHistory();
 		}
+		if (GameMode.getGameMode() !== gameMode.PVP) {
+			if (this.tail && this.tail.prev) {
+				this.tail = this.tail.prev;
+				Render.movePieceAnim(
+					chessBoard,
+					this.tail.next!.value.newPos,
+					this.tail.next!.value.oldPos
+				);
+				chessBoard.loadState(this.tail.value.chessBoard);
+				this.renderHistory();
+			}	
+		}
 	}
 
 	redo(chessBoard: ChessBoard) {
@@ -95,6 +109,18 @@ export class History {
 			chessBoard.loadState(this.tail.value.chessBoard);
 			this.renderHistory();
 		}
+		if (GameMode.getGameMode() !== gameMode.PVP) {
+			if (this.tail && this.tail.next) {
+				this.tail = this.tail.next;
+				Render.movePieceAnim(
+					chessBoard,
+					this.tail.value.oldPos,
+					this.tail.value.newPos
+				);
+				chessBoard.loadState(this.tail.value.chessBoard);
+				this.renderHistory();
+			}
+		}
 	}
 
 	renderHistory() {
@@ -106,7 +132,7 @@ export class History {
 		}
 	}
 
-	static addMove(
+	private static addMove(
 		oldPos: Types.position,
 		newPos: Types.position,
 		chessPiece: ChessPiece | undefined

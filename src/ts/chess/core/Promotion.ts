@@ -11,7 +11,9 @@ export function selectPiecePromotion(
 	const promote = document.querySelector(".promote") as HTMLDivElement;
 	promote.style.transform = "scale(1)";
 
-	const currentPlayer = chessBoard.getCurrentPlayer();
+	const currentPlayer = chessBoard.getPiece(row, col)?.getColor();
+
+	if (!currentPlayer) return;
 
 	const queen_btn = document.getElementById("promote_btn-queen");
 	const rook_btn = document.getElementById("promote_btn-rook");

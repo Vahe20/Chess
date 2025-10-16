@@ -1,4 +1,6 @@
 import { Render } from "../ui/Render.js";
+import { GameMode } from "./GameMode.js";
+import { gameMode } from "../Enums.js";
 class node {
     constructor(value) {
         this.value = value;
@@ -49,6 +51,14 @@ export class History {
             chessBoard.loadState(this.tail.value.chessBoard);
             this.renderHistory();
         }
+        if (GameMode.getGameMode() !== gameMode.PVP) {
+            if (this.tail && this.tail.prev) {
+                this.tail = this.tail.prev;
+                Render.movePieceAnim(chessBoard, this.tail.next.value.newPos, this.tail.next.value.oldPos);
+                chessBoard.loadState(this.tail.value.chessBoard);
+                this.renderHistory();
+            }
+        }
     }
     redo(chessBoard) {
         if (this.tail && this.tail.next) {
@@ -56,6 +66,14 @@ export class History {
             Render.movePieceAnim(chessBoard, this.tail.value.oldPos, this.tail.value.newPos);
             chessBoard.loadState(this.tail.value.chessBoard);
             this.renderHistory();
+        }
+        if (GameMode.getGameMode() !== gameMode.PVP) {
+            if (this.tail && this.tail.next) {
+                this.tail = this.tail.next;
+                Render.movePieceAnim(chessBoard, this.tail.value.oldPos, this.tail.value.newPos);
+                chessBoard.loadState(this.tail.value.chessBoard);
+                this.renderHistory();
+            }
         }
     }
     renderHistory() {
