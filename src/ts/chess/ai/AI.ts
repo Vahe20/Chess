@@ -50,7 +50,6 @@ export class AI {
 
 		return moves;
 	}
-	
 
 	static getBestMove(
 		ChessBoard: ChessBoard,
@@ -65,10 +64,14 @@ export class AI {
 
 			for (const move of moves) {
 				const boardClone = ChessBoard.clone();
-				const piece = boardClone.getPiece(move.piece.getPosition().row, move.piece.getPosition().col);
+				const piece = boardClone.getPiece(
+					move.piece.getPosition().row,
+					move.piece.getPosition().col
+				);
 				piece?.move(boardClone, move.move);
 
-				const score = this.getScore(boardClone, color) + Math.random() * 0.5;
+				const score =
+					this.getScore(boardClone, color) + Math.random() * 0.5;
 				if (score > bestScore) {
 					bestScore = score;
 					bestMove = move;
@@ -77,13 +80,13 @@ export class AI {
 
 			return bestMove;
 		}
-		
+
 		if (GameMode.getGameMode() === gameMode.medium) {
 			const moves = this.getAllMoves(ChessBoard, color);
 			if (moves.length === 0) return undefined;
 
-			let bestMove = moves[0];
-			let bestScore = -Infinity;
+			let bestMove = moves[Math.floor(Math.random() * moves.length)];
+			let bestScore: number = -Infinity;
 
 			for (const move of moves) {
 				const boardClone = ChessBoard.clone();
@@ -91,26 +94,23 @@ export class AI {
 					move.piece.getPosition().row,
 					move.piece.getPosition().col
 				);
-				
 				piece?.move(boardClone, move.move);
 
 				let score = this.getScore(boardClone, color);
 
-				const opponentColor = color === "white" ? "black" : "white";
-				const opponentMoves = this.getAllMoves(
-					boardClone,
-					opponentColor
-				);
+				color = color === "white" ? "black" : "white";
 
-				let worstResponse = 0;
-				for (const oppMove of opponentMoves) {
-					worstResponse = Math.max(
-						worstResponse,
-						this.getScore(boardClone, opponentColor)
+				const moves2 = this.getAllMoves(boardClone, color);
+
+				for (const move of moves2) {
+					const piece = boardClone.getPiece(
+						move.piece.getPosition().row,
+						move.piece.getPosition().col
 					);
-				}
+					piece?.move(boardClone, move.move);
 
-				score -= worstResponse;
+					score += this.getScore(boardClone, color);
+				}
 
 				if (score > bestScore) {
 					bestScore = score;
@@ -121,6 +121,7 @@ export class AI {
 			return bestMove;
 		}
 		if (GameMode.getGameMode() === gameMode.hard) {
+			
 		}
 	}
 

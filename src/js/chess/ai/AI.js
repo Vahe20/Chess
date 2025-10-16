@@ -57,20 +57,20 @@ export class AI {
             const moves = this.getAllMoves(ChessBoard, color);
             if (moves.length === 0)
                 return undefined;
-            let bestMove = moves[0];
+            let bestMove = moves[Math.floor(Math.random() * moves.length)];
             let bestScore = -Infinity;
             for (const move of moves) {
                 const boardClone = ChessBoard.clone();
                 const piece = boardClone.getPiece(move.piece.getPosition().row, move.piece.getPosition().col);
                 piece === null || piece === void 0 ? void 0 : piece.move(boardClone, move.move);
                 let score = this.getScore(boardClone, color);
-                const opponentColor = color === "white" ? "black" : "white";
-                const opponentMoves = this.getAllMoves(boardClone, opponentColor);
-                let worstResponse = 0;
-                for (const oppMove of opponentMoves) {
-                    worstResponse = Math.max(worstResponse, this.getScore(boardClone, opponentColor));
+                color = color === "white" ? "black" : "white";
+                const moves2 = this.getAllMoves(boardClone, color);
+                for (const move of moves2) {
+                    const piece = boardClone.getPiece(move.piece.getPosition().row, move.piece.getPosition().col);
+                    piece === null || piece === void 0 ? void 0 : piece.move(boardClone, move.move);
+                    score += this.getScore(boardClone, color);
                 }
-                score -= worstResponse;
                 if (score > bestScore) {
                     bestScore = score;
                     bestMove = move;
