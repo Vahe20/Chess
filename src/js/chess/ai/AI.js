@@ -45,7 +45,7 @@ export class AI {
                 const boardClone = ChessBoard.clone();
                 const piece = boardClone.getPiece(move.piece.getPosition().row, move.piece.getPosition().col);
                 piece === null || piece === void 0 ? void 0 : piece.move(boardClone, move.move);
-                const score = this.getScore(boardClone, color) + Math.random() * 0.5;
+                const score = this.getScore(boardClone, color);
                 if (score > bestScore) {
                     bestScore = score;
                     bestMove = move;
@@ -63,16 +63,19 @@ export class AI {
                 const boardClone = ChessBoard.clone();
                 const piece = boardClone.getPiece(move.piece.getPosition().row, move.piece.getPosition().col);
                 piece === null || piece === void 0 ? void 0 : piece.move(boardClone, move.move);
-                let score = this.getScore(boardClone, color);
-                color = color === "white" ? "black" : "white";
-                const moves2 = this.getAllMoves(boardClone, color);
-                for (const move of moves2) {
-                    const piece = boardClone.getPiece(move.piece.getPosition().row, move.piece.getPosition().col);
-                    piece === null || piece === void 0 ? void 0 : piece.move(boardClone, move.move);
-                    score += this.getScore(boardClone, color);
+                const opponentColor = color === "white" ? "black" : "white";
+                const opponentMoves = this.getAllMoves(boardClone, opponentColor);
+                let worstResponseScore = Infinity;
+                for (const move2 of opponentMoves) {
+                    const boardClone2 = boardClone.clone();
+                    const piece2 = boardClone2.getPiece(move2.piece.getPosition().row, move2.piece.getPosition().col);
+                    piece2 === null || piece2 === void 0 ? void 0 : piece2.move(boardClone2, move2.move);
+                    const score = this.getScore(boardClone2, color) + Math.random() * 0.1;
+                    if (score < worstResponseScore)
+                        worstResponseScore = score;
                 }
-                if (score > bestScore) {
-                    bestScore = score;
+                if (worstResponseScore > bestScore) {
+                    bestScore = worstResponseScore;
                     bestMove = move;
                 }
             }

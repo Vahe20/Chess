@@ -6,12 +6,12 @@ enum gameMode {
 }
 
 enum PricePiece {
-    pawn = 10,
-    knight = 30,
-    bishop = 30,
-    rook = 50,
-    queen = 90,
-    king = 1000,
+    pawn = 1,
+    knight = 4,
+    bishop = 4,
+    rook = 8,
+    queen = 20,
+    king = 200,
 }
 
 export { gameMode, PricePiece}

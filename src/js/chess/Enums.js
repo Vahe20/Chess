@@ -7,12 +7,12 @@ var gameMode;
 })(gameMode || (gameMode = {}));
 var PricePiece;
 (function (PricePiece) {
-    PricePiece[PricePiece["pawn"] = 10] = "pawn";
-    PricePiece[PricePiece["knight"] = 30] = "knight";
-    PricePiece[PricePiece["bishop"] = 30] = "bishop";
-    PricePiece[PricePiece["rook"] = 50] = "rook";
-    PricePiece[PricePiece["queen"] = 90] = "queen";
-    PricePiece[PricePiece["king"] = 1000] = "king";
+    PricePiece[PricePiece["pawn"] = 1] = "pawn";
+    PricePiece[PricePiece["knight"] = 4] = "knight";
+    PricePiece[PricePiece["bishop"] = 4] = "bishop";
+    PricePiece[PricePiece["rook"] = 8] = "rook";
+    PricePiece[PricePiece["queen"] = 20] = "queen";
+    PricePiece[PricePiece["king"] = 200] = "king";
 })(PricePiece || (PricePiece = {}));
 export { gameMode, PricePiece };
 //# sourceMappingURL=Enums.js.map
