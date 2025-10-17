@@ -19,4 +19,5 @@ export class GameMode {
 		}
 		return gameMode.medium;
 	}
+	
 }
