@@ -37,7 +37,8 @@ export function setupPieces(chessBoard: ChessBoard) {
 				color,
 				"rook",
 				{ row: row, col: 0 },
-				`../assets/images/${imgPrefix}_rook.png`
+				`../assets/images/${imgPrefix}_rook.png`,
+				false
 			)
 		);
 		chessBoard.setPiece(
@@ -77,7 +78,8 @@ export function setupPieces(chessBoard: ChessBoard) {
 				color,
 				"king",
 				{ row: row, col: 4 },
-				`../assets/images/${imgPrefix}_king.png`
+				`../assets/images/${imgPrefix}_king.png`,
+				false
 			)
 		);
 		chessBoard.setPiece(
@@ -107,7 +109,8 @@ export function setupPieces(chessBoard: ChessBoard) {
 				color,
 				"rook",
 				{ row: row, col: 7 },
-				`../assets/images/${imgPrefix}_rook.png`
+				`../assets/images/${imgPrefix}_rook.png`,
+				false
 			)
 		);
 	};

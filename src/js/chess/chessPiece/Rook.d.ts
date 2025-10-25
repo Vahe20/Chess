@@ -2,7 +2,7 @@ import { ChessPiece } from "./chessPiece.js";
 import * as Types from "../Types.js";
 import { ChessBoard } from "../core/ChessBoard.js";
 export declare class Rook extends ChessPiece {
-    constructor(color: Types.typePieceColor, type: Types.typePiece, position: Types.position, img: string);
+    constructor(color: Types.typePieceColor, type: Types.typePiece, position: Types.position, img: string, isMoved: boolean);
     getAvailableMoves(chessBoard: ChessBoard): Types.position[];
     clone(): ChessPiece | undefined;
 }

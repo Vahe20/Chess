@@ -2,8 +2,8 @@ import { ChessPiece } from "./chessPiece.js";
 import { Rules } from "../core/Rules.js";
 import { Rook } from "./Rook.js";
 export class King extends ChessPiece {
-    constructor(color, type, position, img) {
-        super(color, type, position, img);
+    constructor(color, type, position, img, isMoved) {
+        super(color, type, position, img, isMoved);
     }
     getAvailableMoves(chessBoard) {
         const moves = [];
@@ -74,7 +74,7 @@ export class King extends ChessPiece {
         return castlingMoves;
     }
     clone() {
-        return new King(this.color, this.type, { row: this.position.row, col: this.position.col }, this.img);
+        return new King(this.color, this.type, { row: this.position.row, col: this.position.col }, this.img, this.isMoved);
     }
 }
 //# sourceMappingURL=King.js.map

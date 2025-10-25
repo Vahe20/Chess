@@ -12,12 +12,14 @@ export abstract class ChessPiece {
 		color: Types.typePieceColor,
 		type: Types.typePiece,
 		position: Types.position,
-		img: string
+		img: string,
+		isMoved: boolean = false
 	) {
 		this.color = color;
 		this.type = type;
 		this.position = position;
 		this.img = img;
+		this.isMoved = isMoved
 	}
 
 	getStatus(): boolean {

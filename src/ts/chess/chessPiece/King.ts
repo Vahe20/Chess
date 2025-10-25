@@ -10,9 +10,10 @@ export class King extends ChessPiece {
 		color: Types.typePieceColor,
 		type: Types.typePiece,
 		position: Types.position,
-		img: string
+		img: string,
+		isMoved: boolean
 	) {
-		super(color, type, position, img);
+		super(color, type, position, img, isMoved);
 	}
 
 	getAvailableMoves(chessBoard: ChessBoard): Types.position[] | void {
@@ -117,7 +118,8 @@ export class King extends ChessPiece {
 			this.color,
 			this.type,
 			{ row: this.position.row, col: this.position.col },
-			this.img
+			this.img,
+			this.isMoved
 		);
 	}
 }

@@ -19,14 +19,14 @@ export function clearBoard(chessBoard) {
 }
 export function setupPieces(chessBoard) {
     const setupRow = (row, color, imgPrefix) => {
-        chessBoard.setPiece(row, 0, new Rook(color, "rook", { row: row, col: 0 }, `../assets/images/${imgPrefix}_rook.png`));
+        chessBoard.setPiece(row, 0, new Rook(color, "rook", { row: row, col: 0 }, `../assets/images/${imgPrefix}_rook.png`, false));
         chessBoard.setPiece(row, 1, new Knight(color, "knight", { row: row, col: 1 }, `../assets/images/${imgPrefix}_knight.png`));
         chessBoard.setPiece(row, 2, new Bishop(color, "bishop", { row: row, col: 2 }, `../assets/images/${imgPrefix}_bishop.png`));
         chessBoard.setPiece(row, 3, new Queen(color, "queen", { row: row, col: 3 }, `../assets/images/${imgPrefix}_queen.png`));
-        chessBoard.setPiece(row, 4, new King(color, "king", { row: row, col: 4 }, `../assets/images/${imgPrefix}_king.png`));
+        chessBoard.setPiece(row, 4, new King(color, "king", { row: row, col: 4 }, `../assets/images/${imgPrefix}_king.png`, false));
         chessBoard.setPiece(row, 5, new Bishop(color, "bishop", { row: row, col: 5 }, `../assets/images/${imgPrefix}_bishop.png`));
         chessBoard.setPiece(row, 6, new Knight(color, "knight", { row: row, col: 6 }, `../assets/images/${imgPrefix}_knight.png`));
-        chessBoard.setPiece(row, 7, new Rook(color, "rook", { row: row, col: 7 }, `../assets/images/${imgPrefix}_rook.png`));
+        chessBoard.setPiece(row, 7, new Rook(color, "rook", { row: row, col: 7 }, `../assets/images/${imgPrefix}_rook.png`, false));
     };
     setupRow(0, "white", "white");
     setupRow(7, "black", "black");

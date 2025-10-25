@@ -1,7 +1,7 @@
 import { ChessPiece } from "./chessPiece.js";
 export class Rook extends ChessPiece {
-    constructor(color, type, position, img) {
-        super(color, type, position, img);
+    constructor(color, type, position, img, isMoved) {
+        super(color, type, position, img, isMoved);
     }
     getAvailableMoves(chessBoard) {
         const moves = [];
@@ -29,7 +29,7 @@ export class Rook extends ChessPiece {
         return moves;
     }
     clone() {
-        return new Rook(this.color, this.type, { row: this.position.row, col: this.position.col }, this.img);
+        return new Rook(this.color, this.type, { row: this.position.row, col: this.position.col }, this.img, this.isMoved);
     }
 }
 //# sourceMappingURL=Rook.js.map

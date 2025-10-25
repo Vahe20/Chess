@@ -1,10 +1,11 @@
 export class ChessPiece {
-    constructor(color, type, position, img) {
+    constructor(color, type, position, img, isMoved = false) {
         this.isMoved = false;
         this.color = color;
         this.type = type;
         this.position = position;
         this.img = img;
+        this.isMoved = isMoved;
     }
     getStatus() {
         return this.isMoved;

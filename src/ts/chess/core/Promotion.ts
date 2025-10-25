@@ -55,7 +55,8 @@ export function selectPiecePromotion(
 					currentPlayer,
 					"rook",
 					{ row, col },
-					`../assets/images/${currentPlayer}_rook.png`
+					`../assets/images/${currentPlayer}_rook.png`,
+					false
 				)
 			);
 			promote.style.transform = "scale(0)";

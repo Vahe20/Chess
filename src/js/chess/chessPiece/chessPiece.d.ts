@@ -6,7 +6,7 @@ export declare abstract class ChessPiece {
     protected position: Types.position;
     protected img: string;
     protected isMoved: boolean;
-    constructor(color: Types.typePieceColor, type: Types.typePiece, position: Types.position, img: string);
+    constructor(color: Types.typePieceColor, type: Types.typePiece, position: Types.position, img: string, isMoved?: boolean);
     getStatus(): boolean;
     changeStatus(): void;
     getColor(): Types.typePieceColor;
