@@ -23,7 +23,7 @@ export function selectPiecePromotion(chessBoard, row, col) {
     });
     (_c = document
         .getElementById(`promote_btn-rook`)) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => {
-        chessBoard.setPiece(row, col, new Rook(currentPlayer, "rook", { row, col }, `../assets/images/${currentPlayer}_rook.png`, false));
+        chessBoard.setPiece(row, col, new Rook(currentPlayer, "rook", { row, col }, `../assets/images/${currentPlayer}_rook.png`, true));
         promote.style.transform = "scale(0)";
         Render.renderBoard(chessBoard);
     });
