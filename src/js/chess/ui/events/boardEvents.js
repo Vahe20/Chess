@@ -14,7 +14,7 @@ export function initBoardEvents(chessBoard, history) {
     var _a;
     let selectedPiece = undefined;
     (_a = document.querySelector(".board")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", (event) => __awaiter(this, void 0, void 0, function* () {
-        var _a, _b, _c, _d;
+        var _a, _b, _c;
         if (event.target instanceof Element) {
             const cell = event.target.closest(".board_cell");
             if (!cell)
@@ -57,10 +57,10 @@ export function initBoardEvents(chessBoard, history) {
                     chessBoard.getCurrentPlayer()) {
                 Render.clearSelectedCell();
                 selectedPiece = chessBoard.getPiece(row, col);
-                const av_moves = (_b = selectedPiece === null || selectedPiece === void 0 ? void 0 : selectedPiece.getAvailableMoves(chessBoard)) === null || _b === void 0 ? void 0 : _b.filter(pos => {
+                const av_moves = selectedPiece === null || selectedPiece === void 0 ? void 0 : selectedPiece.getAvailableMoves(chessBoard).filter(pos => {
                     return Rules.virtualBoard(chessBoard, { row: row, col: col }, pos);
                 });
-                const castling_pos = (_d = (_c = selectedPiece).castling) === null || _d === void 0 ? void 0 : _d.call(_c, chessBoard);
+                const castling_pos = (_c = (_b = selectedPiece).castling) === null || _c === void 0 ? void 0 : _c.call(_b, chessBoard);
                 if (castling_pos) {
                     Render.renderCastlingMove(castling_pos);
                 }

@@ -15,5 +15,5 @@ export function initEvents(
 	initBoardEvents(chessBoard, history);
 	initMenuEvents(chessBoard, history, game);
 	initUiEvents(chessBoard, history);
-	initGameModeChangeEvent();
+	initGameModeChangeEvent(chessBoard, history);
 }

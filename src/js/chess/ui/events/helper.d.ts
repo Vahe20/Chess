@@ -5,5 +5,6 @@ import { History } from "../../core/history.js";
 declare const moveHandler: (chessBoard: ChessBoard, piece: ChessPiece, history: History, oldPos: Types.position, newPos: Types.position) => void;
 declare function promotionHandler(chessBoard: ChessBoard, row: number, col: number): Promise<void>;
 declare const mathHandler: (chessBoard: ChessBoard, history: History) => void;
-export { moveHandler, mathHandler, promotionHandler };
+declare const AiMove: (chessBoard: ChessBoard, history: History) => void;
+export { moveHandler, mathHandler, promotionHandler, AiMove };
 //# sourceMappingURL=helper.d.ts.map

@@ -36,7 +36,6 @@ export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 					await promotionHandler(chessBoard, row, col);
 
 					mathHandler(chessBoard, history);
-					
 				}
 
 				if (cell && cell.id === "castling_cell") {
@@ -70,7 +69,7 @@ export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 
 				const av_moves = selectedPiece
 					?.getAvailableMoves(chessBoard)
-					?.filter(pos => {
+					.filter(pos => {
 						return Rules.virtualBoard(
 							chessBoard,
 							{ row: row, col: col },

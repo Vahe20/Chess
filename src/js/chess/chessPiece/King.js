@@ -29,7 +29,7 @@ export class King extends ChessPiece {
         return moves;
     }
     castling(chessBoard) {
-        if (this.isMoved === true) {
+        if (this.isMoved === true || Rules.isCheck(chessBoard)) {
             return;
         }
         const shortPos = [

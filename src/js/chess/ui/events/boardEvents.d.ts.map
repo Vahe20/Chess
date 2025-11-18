@@ -1,1 +1,1 @@
-{"version":3,"file":"boardEvents.d.ts","sourceRoot":"","sources":["../../../../ts/chess/ui/events/boardEvents.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,0BAA0B,CAAC;AAGtD,OAAO,EAAE,OAAO,EAAE,MAAM,uBAAuB,CAAC;AAIhD,wBAAgB,eAAe,CAAC,UAAU,EAAE,UAAU,EAAE,OAAO,EAAE,OAAO,QA0FvE"}
+{"version":3,"file":"boardEvents.d.ts","sourceRoot":"","sources":["../../../../ts/chess/ui/events/boardEvents.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,0BAA0B,CAAC;AAGtD,OAAO,EAAE,OAAO,EAAE,MAAM,uBAAuB,CAAC;AAIhD,wBAAgB,eAAe,CAAC,UAAU,EAAE,UAAU,EAAE,OAAO,EAAE,OAAO,QAyFvE"}

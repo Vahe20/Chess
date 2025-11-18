@@ -40,7 +40,6 @@ function promotionHandler(chessBoard, row, col) {
         }
     });
 }
-;
 const mathHandler = (chessBoard, history) => {
     if (Rules.isMath(chessBoard)) {
         Render.renderMath(chessBoard);
@@ -53,9 +52,11 @@ const AiMove = (chessBoard, history) => {
     if (GameMode.getGameMode() !== gameMode.PVP &&
         chessBoard.getCurrentPlayer() === "black") {
         setTimeout(() => {
-            AI.makeMove(chessBoard, history, "black");
+            let ai = AI.getMove(chessBoard, "black");
+            if (ai)
+                moveHandler(chessBoard, ai.piece, history, ai.oldPos, ai.newPos);
         }, 500);
     }
 };
-export { moveHandler, mathHandler, promotionHandler };
+export { moveHandler, mathHandler, promotionHandler, AiMove };
 //# sourceMappingURL=helper.js.map

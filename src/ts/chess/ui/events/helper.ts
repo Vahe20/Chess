@@ -24,7 +24,11 @@ const moveHandler = (
 	history.push(oldPos, newPos, targetPiece, chessBoard);
 };
 
-async function promotionHandler (chessBoard: ChessBoard, row: number, col: number) {
+async function promotionHandler(
+	chessBoard: ChessBoard,
+	row: number,
+	col: number
+) {
 	if (isPawnPromotion(chessBoard, row, col)) {
 		selectPiecePromotion(chessBoard, row, col);
 
@@ -43,7 +47,7 @@ async function promotionHandler (chessBoard: ChessBoard, row: number, col: numbe
 			});
 		});
 	}
-};
+}
 
 const mathHandler = (chessBoard: ChessBoard, history: History) => {
 	if (Rules.isMath(chessBoard)) {
@@ -59,9 +63,17 @@ const AiMove = (chessBoard: ChessBoard, history: History) => {
 		chessBoard.getCurrentPlayer() === "black"
 	) {
 		setTimeout(() => {
-			AI.makeMove(chessBoard, history, "black");
+			let ai = AI.getMove(chessBoard, "black");
+			if (ai)
+				moveHandler(
+					chessBoard,
+					ai.piece,
+					history,
+					ai.oldPos,
+					ai.newPos
+				);
 		}, 500);
 	}
 };
 
-export { moveHandler, mathHandler, promotionHandler };
+export { moveHandler, mathHandler, promotionHandler, AiMove };

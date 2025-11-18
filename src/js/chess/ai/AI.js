@@ -1,7 +1,6 @@
 import { Rules } from "../core/Rules.js";
 import { gameMode } from "../Enums.js";
 import { PricePiece } from "../Enums.js";
-import { moveHandler } from "../ui/events/helper.js";
 import { GameMode } from "../core/GameMode.js";
 export class AI {
     static getScore(chessBoard, color) {
@@ -24,7 +23,7 @@ export class AI {
                 const piece = chessBoard.getPiece(i, j);
                 if (piece && piece.getColor() === color) {
                     const availableMoves = piece.getAvailableMoves(chessBoard);
-                    availableMoves === null || availableMoves === void 0 ? void 0 : availableMoves.forEach(move => {
+                    availableMoves.forEach(move => {
                         if (Rules.virtualBoard(chessBoard, { row: i, col: j }, move)) {
                             moves.push({ piece, move });
                         }
@@ -122,13 +121,13 @@ export class AI {
             return bestMove;
         }
     }
-    static makeMove(chessBoard, history, color) {
+    static getMove(chessBoard, color) {
         const move = this.getBestMove(chessBoard, color);
         if (!move)
             return;
         const oldPos = move.piece.getPosition();
         const newPos = move.move;
-        moveHandler(chessBoard, move.piece, history, oldPos, newPos);
+        return { piece: move.piece, oldPos, newPos };
     }
 }
 //# sourceMappingURL=AI.js.map

@@ -64,7 +64,7 @@ export abstract class ChessPiece {
 
 	abstract clone(): ChessPiece | undefined;
 
-	abstract getAvailableMoves(chessBoard: ChessBoard): Types.position[] | void;
+	abstract getAvailableMoves(chessBoard: ChessBoard): Types.position[];
 
 	move(
 		chessBoard: ChessBoard,

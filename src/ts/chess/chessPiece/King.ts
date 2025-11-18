@@ -16,7 +16,7 @@ export class King extends ChessPiece {
 		super(color, type, position, img, isMoved);
 	}
 
-	getAvailableMoves(chessBoard: ChessBoard): Types.position[] | void {
+	getAvailableMoves(chessBoard: ChessBoard): Types.position[] {
 		const moves: Types.position[] = [];
 
 		const directions = [
@@ -46,7 +46,7 @@ export class King extends ChessPiece {
 	}
 
 	castling(chessBoard: ChessBoard): Types.position[] | void {
-		if (this.isMoved === true) {
+		if (this.isMoved === true || Rules.isCheck(chessBoard)) {
 			return;
 		}
 

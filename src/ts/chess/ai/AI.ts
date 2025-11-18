@@ -33,7 +33,7 @@ export class AI {
 				const piece = chessBoard.getPiece(i, j);
 				if (piece && piece.getColor() === color) {
 					const availableMoves = piece.getAvailableMoves(chessBoard);
-					availableMoves?.forEach(move => {
+					availableMoves.forEach(move => {
 						if (
 							Rules.virtualBoard(
 								chessBoard,
@@ -191,9 +191,8 @@ export class AI {
 		}
 	}
 
-	static makeMove(
+	static getMove(
 		chessBoard: ChessBoard,
-		history: History,
 		color: Types.typePieceColor
 	) {
 		const move = this.getBestMove(chessBoard, color);
@@ -203,6 +202,6 @@ export class AI {
 		const oldPos = move.piece.getPosition();
 		const newPos = move.move;
 
-		moveHandler(chessBoard, move.piece, history, oldPos, newPos);
+		return {piece: move.piece, oldPos, newPos};
 	}
 }

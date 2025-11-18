@@ -18,7 +18,7 @@ export declare abstract class ChessPiece {
     getImg(): string;
     setImg(img: string): void;
     abstract clone(): ChessPiece | undefined;
-    abstract getAvailableMoves(chessBoard: ChessBoard): Types.position[] | void;
+    abstract getAvailableMoves(chessBoard: ChessBoard): Types.position[];
     move(chessBoard: ChessBoard, newPos: Types.position): void;
 }
 //# sourceMappingURL=chessPiece.d.ts.map

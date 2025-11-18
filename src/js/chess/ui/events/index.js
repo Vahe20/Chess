@@ -6,6 +6,6 @@ export function initEvents(chessBoard, history, game) {
     initBoardEvents(chessBoard, history);
     initMenuEvents(chessBoard, history, game);
     initUiEvents(chessBoard, history);
-    initGameModeChangeEvent();
+    initGameModeChangeEvent(chessBoard, history);
 }
 //# sourceMappingURL=index.js.map
