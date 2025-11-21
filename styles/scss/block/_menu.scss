@@ -26,10 +26,6 @@
         color: #000;
     }
 
-    &__rotate &__restart {
-        padding: rem(10) rem(30);
-        cursor: pointer;
-    }
 }
 
 .promote {
@@ -67,7 +63,7 @@
     }
 }
 
-@mixin mobile-s {
+@include mobile-s {
     .menu {
         width: rem(250);
         height: rem(250);
