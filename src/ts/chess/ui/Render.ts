@@ -2,6 +2,7 @@ import { ChessBoard } from "../core/ChessBoard.js";
 import { ChessPiece } from "../chessPiece/chessPiece.js";
 import * as Types from "../Types.js";
 import { menuOpenHandler } from "./helper.js";
+import { Rules } from "../core/Rules.js";
 
 export class Render {
 	static renderBoard(chessBoard: ChessBoard) {
@@ -85,12 +86,20 @@ export class Render {
 
 	static renderMath(chessBoard: ChessBoard) {
 		const color = chessBoard.getCurrentPlayer();
-		const winnerColor = color === "white" ? "Black" : "White";
-
+		
 		const winner = document.getElementById("win");
 		const menuImg = document.getElementById(
 			"menu_img"
 		) as HTMLImageElement | null;
+		
+		if (!Rules.isCheck(chessBoard)) {
+			if (winner) winner.textContent = "Ничья!";
+			if (menuImg) menuImg.src = "none";
+			menuOpenHandler();
+			return;
+		}
+		
+		const winnerColor = color === "white" ? "Чёрный" : "Белый";
 
 		menuOpenHandler();
 		if (winner) winner.textContent = `${winnerColor} win!`;
@@ -99,6 +108,7 @@ export class Render {
 				color === "white" ? "black" : "white"
 			}_king.png`;
 	}
+
 
 	static clearSelectedCell() {
 		for (let i = 0; i < 8; i++) {

@@ -20,7 +20,7 @@
         display: grid;
         grid-template-columns: repeat(8, 1fr);
         grid-template-rows: repeat(8, 1fr);
-        transition: var(--transition);
+        transition: var(--slowAnim);
 
         &_cell {
             border: 1px solid #000;

@@ -7,7 +7,7 @@
     background-color: rgb(124, 87, 51);
     transform: rotateY(180deg);
     border: 2px solid #000;
-    transition: var(--transition);
+    transition: var(--slowAnim);
     width: rem(500);
     height: rem(500);
     display: flex;

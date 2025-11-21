@@ -233,6 +233,7 @@ body {
 
 :root {
   --transition: .4s;
+  --slowAnim: .8s;
 }
 
 .header__menu-btn {
@@ -255,7 +256,7 @@ body {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  transition: var(--transition);
+  transition: var(--slowAnim);
 }
 .wrap .board_cell {
   border: 1px solid #000;
@@ -284,7 +285,7 @@ body {
   background-color: rgb(124, 87, 51);
   transform: rotateY(180deg);
   border: 2px solid #000;
-  transition: var(--transition);
+  transition: var(--slowAnim);
   width: 31.25rem;
   height: 31.25rem;
   display: flex;

@@ -4,8 +4,10 @@ import { getKing } from "./Utils.js";
 import * as Types from "../Types.js";
 
 export class Rules {
-	static isCheck(chessBoard: ChessBoard) {
-		const currentPlayer = chessBoard.getCurrentPlayer();
+	static isCheck(
+		chessBoard: ChessBoard,
+		currentPlayer: Types.typePieceColor = chessBoard.getCurrentPlayer()
+	) {
 		const king = getKing(chessBoard, currentPlayer);
 		const kingPos = king?.getPosition();
 

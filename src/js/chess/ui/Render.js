@@ -1,5 +1,6 @@
 import { ChessPiece } from "../chessPiece/chessPiece.js";
 import { menuOpenHandler } from "./helper.js";
+import { Rules } from "../core/Rules.js";
 export class Render {
     static renderBoard(chessBoard) {
         this.clearSelectedCell();
@@ -61,9 +62,17 @@ export class Render {
     }
     static renderMath(chessBoard) {
         const color = chessBoard.getCurrentPlayer();
-        const winnerColor = color === "white" ? "Black" : "White";
         const winner = document.getElementById("win");
         const menuImg = document.getElementById("menu_img");
+        if (!Rules.isCheck(chessBoard)) {
+            if (winner)
+                winner.textContent = "Ничья!";
+            if (menuImg)
+                menuImg.src = "none";
+            menuOpenHandler();
+            return;
+        }
+        const winnerColor = color === "white" ? "Чёрный" : "Белый";
         menuOpenHandler();
         if (winner)
             winner.textContent = `${winnerColor} win!`;

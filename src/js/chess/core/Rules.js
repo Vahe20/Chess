@@ -2,8 +2,7 @@ import { ChessBoard } from "./ChessBoard.js";
 import { Render } from "../ui/Render.js";
 import { getKing } from "./Utils.js";
 export class Rules {
-    static isCheck(chessBoard) {
-        const currentPlayer = chessBoard.getCurrentPlayer();
+    static isCheck(chessBoard, currentPlayer = chessBoard.getCurrentPlayer()) {
         const king = getKing(chessBoard, currentPlayer);
         const kingPos = king === null || king === void 0 ? void 0 : king.getPosition();
         for (let i = 0; i < 8; i++) {
