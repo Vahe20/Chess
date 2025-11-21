@@ -55,11 +55,21 @@
 }
 
 @include mobile {
-    .wrap {
-        .promote {
-            & img {
-                width: rem(50);
-            }
+    .promote {
+        & img {
+            width: rem(50);
         }
+    }
+
+    .menu {
+        width: rem(400);
+        height: rem(400);
+    }
+}
+
+@mixin mobile-s {
+    .menu {
+        width: rem(250);
+        height: rem(250);
     }
 }

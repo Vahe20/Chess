@@ -319,8 +319,12 @@ body {
   }
 }
 @media (width <= 47.99875rem) {
-  .wrap .promote img {
+  .promote img {
     width: 3.125rem;
+  }
+  .menu {
+    width: 25rem;
+    height: 25rem;
   }
 }
 /* Тема 0 — классика */
