@@ -5,7 +5,7 @@ import { Rules } from "../core/Rules.js";
 import { History } from "../core/history.js";
 import { gameMode } from "../Enums.js";
 import { PricePiece } from "../Enums.js";
-import { moveHandler } from "../ui/events/helper.js";
+import { moveHandler } from "../ui/helper.js";
 import { GameMode } from "../core/GameMode.js";
 
 export class AI {
@@ -70,7 +70,8 @@ export class AI {
 				);
 				piece?.move(boardClone, move.move);
 
-				const score = this.getScore(boardClone, color) + Math.random() * 0.3;
+				const score =
+					this.getScore(boardClone, color) + Math.random() * 0.3;
 
 				if (score > bestScore) {
 					bestScore = score;
@@ -191,10 +192,7 @@ export class AI {
 		}
 	}
 
-	static getMove(
-		chessBoard: ChessBoard,
-		color: Types.typePieceColor
-	) {
+	static getMove(chessBoard: ChessBoard, color: Types.typePieceColor) {
 		const move = this.getBestMove(chessBoard, color);
 
 		if (!move) return;
@@ -202,6 +200,6 @@ export class AI {
 		const oldPos = move.piece.getPosition();
 		const newPos = move.move;
 
-		return {piece: move.piece, oldPos, newPos};
+		return { piece: move.piece, oldPos, newPos };
 	}
 }

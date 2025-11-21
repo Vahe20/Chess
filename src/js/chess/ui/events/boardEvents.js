@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { Render } from "../Render.js";
 import { Rules } from "../../core/Rules.js";
-import { mathHandler, moveHandler, promotionHandler } from "./helper.js";
+import { mathHandler, moveHandler, promotionHandler } from "../helper.js";
 export function initBoardEvents(chessBoard, history) {
     var _a;
     let selectedPiece = undefined;

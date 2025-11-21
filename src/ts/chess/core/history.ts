@@ -123,6 +123,32 @@ export class History {
 		}
 	}
 
+	goStart(chessBoard: ChessBoard) {
+		while (this.tail && this.tail.prev) {
+			this.tail = this.tail.prev;
+			Render.movePieceAnim(
+				chessBoard,
+				this.tail.next!.value.newPos,
+				this.tail.next!.value.oldPos
+			);
+			chessBoard.loadState(this.tail.value.chessBoard);
+		}
+		this.renderHistory();
+	}
+
+	goEnd(chessBoard: ChessBoard) {
+		while (this.tail && this.tail.next) {
+			this.tail = this.tail.next;
+			Render.movePieceAnim(
+				chessBoard,
+				this.tail.value.oldPos,
+				this.tail.value.newPos
+			);
+			chessBoard.loadState(this.tail.value.chessBoard);
+		}
+		this.renderHistory();
+	}
+
 	renderHistory() {
 		History.clear();
 		for (let node = this.head; node !== null; node = node.next) {

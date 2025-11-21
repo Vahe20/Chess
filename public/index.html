@@ -19,7 +19,7 @@
 
 		<div class="wrap">
 			<div class="board theme-0"></div>
-			<div class="menu">
+			<div class="menu theme-0">
 				<button class="menu__exit btn" id="menu_exit">X</button>
 				<p class="menu__winner" id="win"></p>
 				<img
@@ -34,20 +34,20 @@
 						class="menu__restart btn"
 						id="restart"
 					>
-						Restart
+						Перезапуск
 					</button>
 					<button
 						type="button"
 						class="menu__cheangeColor btn"
 						id="changeColor"
 					>
-						Change Color
+						Изменить стиль
 					</button>
 					<select id="gameMode">
-						<option value="PVP">2 игрок</option>
-						<option value="easy">Лёгкая</option>
-						<option value="medium" selected>Средняя</option>
-						<option value="hard">Сложная</option>
+						<option value="PVP">2 Игрок</option>
+						<option value="easy">Легко</option>
+						<option value="medium" selected>Средний</option>
+						<option value="hard">Трудный</option>
 					</select>
 				</div>
 			</div>
@@ -88,10 +88,10 @@
 			<div class="moves-header">
 				<div class="moves-title">История ходов</div>
 				<div class="moves-controls">
-					<!-- <button id="goStart">|&lt;</button> -->
-					<button id="undo">&lt;</button>
-					<button id="redo">&gt;</button>
-					<!-- <button id="goEnd">&gt;|</button> -->
+					<button id="goStart">|<</button>
+					<button id="undo"><</button>
+					<button id="redo">></button>
+					<button id="goEnd">>|</button>
 				</div>
 			</div>
 

@@ -1,6 +1,7 @@
 import { ChessBoard } from "../core/ChessBoard.js";
 import { ChessPiece } from "../chessPiece/chessPiece.js";
 import * as Types from "../Types.js";
+import { menuOpenHandler } from "./helper.js";
 
 export class Render {
 	static renderBoard(chessBoard: ChessBoard) {
@@ -86,13 +87,12 @@ export class Render {
 		const color = chessBoard.getCurrentPlayer();
 		const winnerColor = color === "white" ? "Black" : "White";
 
-		const menu = document.querySelector(".menu") as HTMLElement | null;
 		const winner = document.getElementById("win");
 		const menuImg = document.getElementById(
 			"menu_img"
 		) as HTMLImageElement | null;
 
-		if (menu) menu.style.transform = "scale(1)";
+		menuOpenHandler();
 		if (winner) winner.textContent = `${winnerColor} win!`;
 		if (menuImg)
 			menuImg.src = `../assets/images/${

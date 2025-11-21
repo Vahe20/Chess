@@ -10,6 +10,8 @@ export declare class History {
     push(oldPos: Types.position, newPos: Types.position, chessPiece: ChessPiece | undefined, chessBoard: ChessBoard): void;
     undo(chessBoard: ChessBoard): void;
     redo(chessBoard: ChessBoard): void;
+    goStart(chessBoard: ChessBoard): void;
+    goEnd(chessBoard: ChessBoard): void;
     renderHistory(): void;
     private static addMove;
     static clear(): void;

@@ -1,5 +1,6 @@
 /* Тема 0 — классика */
-.board.theme-0 .board_cell {
+.board.theme-0 .board_cell,
+.menu.theme-0 button {
     background-color: rgb(243, 200, 106);
 
     &:hover {
@@ -7,12 +8,14 @@
     }
 }
 
-.board.theme-0 .black_cell {
+.board.theme-0 .black_cell,
+.menu.theme-0 {
     background-color: rgb(124, 87, 51);
 }
 
 /* Тема 1 — серая */
-.board.theme-1 .board_cell {
+.board.theme-1 .board_cell,
+.menu.theme-1 button {
     background-color: #e0e0e0;
 
     &:hover {
@@ -20,12 +23,16 @@
     }
 }
 
-.board.theme-1 .black_cell {
+
+.board.theme-1 .black_cell,
+.menu.theme-1 {
     background-color: #808080;
 }
 
+
 /* Тема 2 — зелёная */
-.board.theme-2 .board_cell {
+.board.theme-2 .board_cell, 
+.menu.theme-2 button  {
     background-color: #eeeed2;
 
     &:hover {
@@ -33,7 +40,8 @@
     }
 }
 
-.board.theme-2 .black_cell {
+.board.theme-2 .black_cell,
+.menu.theme-2 {
     background-color: #6c8b4d;
 }
 

@@ -255,7 +255,7 @@ body {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  transition: var(--transition) s;
+  transition: var(--transition);
 }
 .wrap .board_cell {
   border: 1px solid #000;
@@ -274,12 +274,13 @@ body {
 }
 .menu {
   position: absolute;
-  background-color: rgb(192, 191, 191);
-  transform: scale(0);
+  z-index: -10;
+  background-color: rgb(124, 87, 51);
+  transform: rotateY(180deg);
   border: 2px solid #000;
   transition: var(--transition);
-  width: 50%;
-  height: 60%;
+  width: 37.5rem;
+  height: 37.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -323,38 +324,47 @@ body {
   }
 }
 /* Тема 0 — классика */
-.board.theme-0 .board_cell {
+.board.theme-0 .board_cell,
+.menu.theme-0 button {
   background-color: rgb(243, 200, 106);
 }
-.board.theme-0 .board_cell:hover {
+.board.theme-0 .board_cell:hover,
+.menu.theme-0 button:hover {
   background-color: rgb(56, 55, 54);
 }
 
-.board.theme-0 .black_cell {
+.board.theme-0 .black_cell,
+.menu.theme-0 {
   background-color: rgb(124, 87, 51);
 }
 
 /* Тема 1 — серая */
-.board.theme-1 .board_cell {
+.board.theme-1 .board_cell,
+.menu.theme-1 button {
   background-color: #e0e0e0;
 }
-.board.theme-1 .board_cell:hover {
+.board.theme-1 .board_cell:hover,
+.menu.theme-1 button:hover {
   background-color: rgb(70, 50, 30);
 }
 
-.board.theme-1 .black_cell {
+.board.theme-1 .black_cell,
+.menu.theme-1 {
   background-color: #808080;
 }
 
 /* Тема 2 — зелёная */
-.board.theme-2 .board_cell {
+.board.theme-2 .board_cell,
+.menu.theme-2 button {
   background-color: #eeeed2;
 }
-.board.theme-2 .board_cell:hover {
+.board.theme-2 .board_cell:hover,
+.menu.theme-2 button:hover {
   background-color: rgb(77, 110, 74);
 }
 
-.board.theme-2 .black_cell {
+.board.theme-2 .black_cell,
+.menu.theme-2 {
   background-color: #6c8b4d;
 }
 

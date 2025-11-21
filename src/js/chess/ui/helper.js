@@ -7,12 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { Render } from "../Render.js";
-import { Rules } from "../../core/Rules.js";
-import { gameMode } from "../../Enums.js";
-import { GameMode } from "../../core/GameMode.js";
-import { AI } from "../../ai/AI.js";
-import { isPawnPromotion, selectPiecePromotion } from "../../core/Promotion.js";
+import { Render } from "./Render.js";
+import { Rules } from "../core/Rules.js";
+import { gameMode } from "../Enums.js";
+import { GameMode } from "../core/GameMode.js";
+import { AI } from "../ai/AI.js";
+import { isPawnPromotion, selectPiecePromotion } from "../core/Promotion.js";
+// helpers for board event handlers
 const moveHandler = (chessBoard, piece, history, oldPos, newPos) => {
     const targetPiece = chessBoard.getPiece(newPos.row, newPos.col);
     piece.move(chessBoard, newPos);
@@ -58,5 +59,40 @@ const AiMove = (chessBoard, history) => {
         }, 500);
     }
 };
-export { moveHandler, mathHandler, promotionHandler, AiMove };
+// helpers for menu events
+const menuOpenHandler = () => {
+    const menu = document.querySelector(".menu");
+    const board = document.querySelector(".board");
+    if (!menu || !board)
+        return;
+    if (menu.style.transform === "rotateY(0deg)") {
+        menu.style.transform = "rotateY(180deg)";
+        board.style.transform = "rotateY(0deg)";
+        board.style.zIndex = "10";
+        menu.style.zIndex = "-10";
+        return;
+    }
+    else {
+        menu.style.transform = "rotateY(0deg)";
+        board.style.zIndex = "0";
+        board.style.transform = "rotateY(180deg)";
+        menu.style.zIndex = "10";
+    }
+};
+// helper to generate html cells for board
+const generateHtmlCells = () => {
+    var _a;
+    for (let i = 7; i >= 0; --i) {
+        for (let j = 0; j < 8; ++j) {
+            const cell = document.createElement("div");
+            cell.classList.add("board_cell");
+            cell.classList.add(`cell-${i}-${j}`);
+            (_a = document.querySelector(".board")) === null || _a === void 0 ? void 0 : _a.appendChild(cell);
+            if ((i + j) % 2 === 0) {
+                cell.classList.add("black_cell");
+            }
+        }
+    }
+};
+export { moveHandler, mathHandler, promotionHandler, AiMove, menuOpenHandler, generateHtmlCells, };
 //# sourceMappingURL=helper.js.map

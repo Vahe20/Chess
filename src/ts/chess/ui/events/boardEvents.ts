@@ -3,7 +3,7 @@ import { ChessPiece } from "../../chessPiece/chessPiece.js";
 import { Render } from "../Render.js";
 import { History } from "../../core/history.js";
 import { Rules } from "../../core/Rules.js";
-import { mathHandler, moveHandler, promotionHandler } from "./helper.js";
+import { mathHandler, moveHandler, promotionHandler } from "../helper.js";
 
 export function initBoardEvents(chessBoard: ChessBoard, history: History) {
 	let selectedPiece: ChessPiece | undefined = undefined;
