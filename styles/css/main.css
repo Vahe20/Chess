@@ -274,8 +274,8 @@ body {
 }
 @media (width <= 28.18625rem) {
   .wrap .board {
-    width: 15.625rem;
-    height: 15.625rem;
+    width: 21.875rem;
+    height: 21.875rem;
   }
 }
 .menu {
@@ -331,8 +331,8 @@ body {
 }
 @media (width <= 28.18625rem) {
   .menu {
-    width: 15.625rem;
-    height: 15.625rem;
+    width: 21.875rem;
+    height: 21.875rem;
   }
 }
 /* Тема 0 — классика */
