@@ -8,8 +8,8 @@
     transform: rotateY(180deg);
     border: 2px solid #000;
     transition: var(--transition);
-    width: rem(600);
-    height: rem(600);
+    width: rem(500);
+    height: rem(500);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -67,5 +67,7 @@
     .menu {
         width: rem(350);
         height: rem(350);
+
+        font-size: rem(14);
     }
 }

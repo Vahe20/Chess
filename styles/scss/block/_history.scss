@@ -10,6 +10,7 @@ $border: rgba(255, 255, 255, 0.06);
 
 .moves-panel {
     position: absolute;
+    z-index: 100;
     right: rem(50);
     top: 20%;
     max-width: 100%;

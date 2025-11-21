@@ -15,8 +15,8 @@
     .board {
         border: 1px solid #000;
         box-shadow: 0 0 10px #000;
-        width: rem(600);
-        height: rem(600);
+        width: rem(500);
+        height: rem(500);
         display: grid;
         grid-template-columns: repeat(8, 1fr);
         grid-template-rows: repeat(8, 1fr);

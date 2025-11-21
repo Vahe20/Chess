@@ -250,8 +250,8 @@ body {
 .wrap .board {
   border: 1px solid #000;
   box-shadow: 0 0 10px #000;
-  width: 37.5rem;
-  height: 37.5rem;
+  width: 31.25rem;
+  height: 31.25rem;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
@@ -285,8 +285,8 @@ body {
   transform: rotateY(180deg);
   border: 2px solid #000;
   transition: var(--transition);
-  width: 37.5rem;
-  height: 37.5rem;
+  width: 31.25rem;
+  height: 31.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -334,6 +334,7 @@ body {
   .menu {
     width: 21.875rem;
     height: 21.875rem;
+    font-size: 0.875rem;
   }
 }
 /* Тема 0 — классика */
@@ -402,6 +403,7 @@ body {
 
 .moves-panel {
   position: absolute;
+  z-index: 100;
   right: 3.125rem;
   top: 20%;
   max-width: 100%;
