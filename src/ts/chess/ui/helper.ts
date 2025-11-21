@@ -31,24 +31,24 @@ async function promotionHandler(
 	row: number,
 	col: number
 ) {
-	if (isPawnPromotion(chessBoard, row, col)) {
-		selectPiecePromotion(chessBoard, row, col);
+	if (!isPawnPromotion(chessBoard, row, col)) return;
 
-		const promote = document.querySelector(".promote") as HTMLDivElement;
+	selectPiecePromotion(chessBoard, row, col);
 
-		await new Promise<void>(resolve => {
-			const observer = new MutationObserver(() => {
-				if (promote.style.transform === "scale(0)") {
-					observer.disconnect();
-					resolve();
-				}
-			});
-			observer.observe(promote, {
-				attributes: true,
-				attributeFilter: ["style"],
-			});
-		});
-	}
+	const promote = document.querySelector(".promote") as HTMLDivElement;
+
+	await new Promise<void>(resolve => {
+		const handler = (e: TransitionEvent) => {
+			if (
+				e.propertyName === "transform" &&
+				promote.style.transform === "scale(0)"
+			) {
+				promote.removeEventListener("transitionend", handler);
+				resolve();
+			}
+		};
+		promote.addEventListener("transitionend", handler);
+	});
 }
 
 const mathHandler = (chessBoard: ChessBoard, history: History) => {

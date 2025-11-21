@@ -29,7 +29,8 @@ export function initMenuEvents(
 	document.getElementById("changeColor")?.addEventListener("click", () => {
 		const board = document.querySelector(".board") as HTMLElement | null;
 		const menu = document.querySelector(".menu") as HTMLDivElement;
-		if (!board || !menu) return;
+		const promote = document.querySelector(".promote") as HTMLDivElement;
+		if (!board || !menu || !promote) return;
 
 		let current = Number(board.dataset.colorVariant ?? "0");
 		current = (current + 1) % 3;
@@ -39,5 +40,7 @@ export function initMenuEvents(
 		board.classList.add(`theme-${current}`);
 		menu.classList.remove("theme-0", "theme-1", "theme-2");
 		menu.classList.add(`theme-${current}`);
+		promote.classList.remove("theme-0", "theme-1", "theme-2");
+		promote.classList.add(`theme-${current}`);
 	});
 }

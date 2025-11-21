@@ -20,7 +20,8 @@ export function initMenuEvents(chessBoard, history, game) {
         var _a;
         const board = document.querySelector(".board");
         const menu = document.querySelector(".menu");
-        if (!board || !menu)
+        const promote = document.querySelector(".promote");
+        if (!board || !menu || !promote)
             return;
         let current = Number((_a = board.dataset.colorVariant) !== null && _a !== void 0 ? _a : "0");
         current = (current + 1) % 3;
@@ -29,6 +30,8 @@ export function initMenuEvents(chessBoard, history, game) {
         board.classList.add(`theme-${current}`);
         menu.classList.remove("theme-0", "theme-1", "theme-2");
         menu.classList.add(`theme-${current}`);
+        promote.classList.remove("theme-0", "theme-1", "theme-2");
+        promote.classList.add(`theme-${current}`);
     });
 }
 //# sourceMappingURL=menuEvents.js.map

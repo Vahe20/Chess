@@ -23,22 +23,20 @@ const moveHandler = (chessBoard, piece, history, oldPos, newPos) => {
 };
 function promotionHandler(chessBoard, row, col) {
     return __awaiter(this, void 0, void 0, function* () {
-        if (isPawnPromotion(chessBoard, row, col)) {
-            selectPiecePromotion(chessBoard, row, col);
-            const promote = document.querySelector(".promote");
-            yield new Promise(resolve => {
-                const observer = new MutationObserver(() => {
-                    if (promote.style.transform === "scale(0)") {
-                        observer.disconnect();
-                        resolve();
-                    }
-                });
-                observer.observe(promote, {
-                    attributes: true,
-                    attributeFilter: ["style"],
-                });
-            });
-        }
+        if (!isPawnPromotion(chessBoard, row, col))
+            return;
+        selectPiecePromotion(chessBoard, row, col);
+        const promote = document.querySelector(".promote");
+        yield new Promise(resolve => {
+            const handler = (e) => {
+                if (e.propertyName === "transform" &&
+                    promote.style.transform === "scale(0)") {
+                    promote.removeEventListener("transitionend", handler);
+                    resolve();
+                }
+            };
+            promote.addEventListener("transitionend", handler);
+        });
     });
 }
 const mathHandler = (chessBoard, history) => {

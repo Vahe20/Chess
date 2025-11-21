@@ -9,7 +9,8 @@
 }
 
 .board.theme-0 .black_cell,
-.menu.theme-0 {
+.menu.theme-0,
+.promote.theme-0 {
     background-color: rgb(124, 87, 51);
 }
 
@@ -25,14 +26,15 @@
 
 
 .board.theme-1 .black_cell,
-.menu.theme-1 {
+.menu.theme-1,
+.promote.theme-1 {
     background-color: #808080;
 }
 
 
 /* Тема 2 — зелёная */
-.board.theme-2 .board_cell, 
-.menu.theme-2 button  {
+.board.theme-2 .board_cell,
+.menu.theme-2 button {
     background-color: #eeeed2;
 
     &:hover {
@@ -41,7 +43,8 @@
 }
 
 .board.theme-2 .black_cell,
-.menu.theme-2 {
+.menu.theme-2,
+.promote.theme-2 {
     background-color: #6c8b4d;
 }
 

@@ -304,8 +304,9 @@ body {
 
 .promote {
   position: absolute;
-  background-color: rgb(192, 191, 191);
+  background-color: rgb(124, 87, 51);
   transform: scale(0);
+  z-index: 20;
   border: 2px solid #000;
   transition: var(--transition);
   display: flex;
@@ -346,7 +347,8 @@ body {
 }
 
 .board.theme-0 .black_cell,
-.menu.theme-0 {
+.menu.theme-0,
+.promote.theme-0 {
   background-color: rgb(124, 87, 51);
 }
 
@@ -361,7 +363,8 @@ body {
 }
 
 .board.theme-1 .black_cell,
-.menu.theme-1 {
+.menu.theme-1,
+.promote.theme-1 {
   background-color: #808080;
 }
 
@@ -376,7 +379,8 @@ body {
 }
 
 .board.theme-2 .black_cell,
-.menu.theme-2 {
+.menu.theme-2,
+.promote.theme-2 {
   background-color: #6c8b4d;
 }
 
